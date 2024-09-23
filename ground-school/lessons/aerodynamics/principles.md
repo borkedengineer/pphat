@@ -39,11 +39,11 @@ Air travelling faster over the curved upper surface of the wing causes lower pre
 
 ![Angle of Attack](../../diagrams/angle-of-attack.png)
 
-As you increase AoA you get more lift _**iff**_ air can conform to the surface of the wing.
+As you increase α you get more lift _**iff**_ air can conform to the surface of the wing.
 
 **Critical Angle of Attack:** Airfoil will ALWAYS stall andyields maximum lift coefficient.
 
-> Critical AoA at stall remains the same regardless of change in gross weight, airspeed or altitude.
+> Critical α at stall remains the same regardless of change in gross weight, airspeed or altitude.
 
 ## Spins
 
