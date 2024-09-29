@@ -57,3 +57,18 @@ Elevator effectiveness is reduced when:
 
 1. Power is reduced
 2. Downwash from propeller slipstream is reduced
+
+> Flying faster and at a lower angle of attack (α) causes Center of Pressure (CP) to move aft yielding more tail down force.
+
+- High speeds and low AoA
+- Considered more stable
+
+> Flying slower and change in AoA (α) causes Center of Pressure (CP) to move fore causing the nose to pitch up from less tail down force.
+
+- Considered less stable
+
+**Banking**: A manuever to change aircraft heading.
+
+> **Ailerons** are used to bank an aircraft; to cause one wing tip to move up and the other wing tip to move down.
+
+![Forces that influence longitudinal stability](../../diagrams/banks.png)
