@@ -72,3 +72,50 @@ Elevator effectiveness is reduced when:
 > **Ailerons** are used to bank an aircraft; to cause one wing tip to move up and the other wing tip to move down.
 
 ![Forces that influence longitudinal stability](../../diagrams/banks.png)
+
+#### What happens in no rudder use when banking?
+
+The aircraft will roll and yaw in the opposite direction. This is dubbed adverse yaw.
+
+**Adverse Yaw**: The tendenacy of an aircraft to yaw in the opposite direction during a turn while rolling.
+
+##### Why does this happen?
+
+This is example it's a right turn (bank).
+
+| Aileron Position | Angle of Attack | Lift      | Drag      | Explanation                        |
+| ---------------- | --------------- | --------- | --------- | ---------------------------------- |
+| Left down        | increases       | increases | increases | Direction of the wind moves back   |
+| Right up         |                 | decreases | decreases | Direction of the wind goes forward |
+
+> Apply rudder to correct for adverse yaw.​⬤
+
+### Load Factor
+
+Performing turns/banks increases the load factor.
+
+During a turn, increase the angle of attack to prevent the aircraft from descending.
+
+**Load Factor**: The ratio of the lift of an aircraft to its weight. Measured in G's (acceleration of gravity).
+
+![Load Factor](../../diagrams/load-factor.png)
+
+> An increase in load factor causes stalls to occur at higher speeds.
+
+> The speed of the aircraft determines the excess load put on the wings.
+
+#### How much load does an aircraft experience during a turn?
+
+These can be calculated using load factor charts.
+
+![Example load factor chart](../../diagrams/load-factor-chart.png)
+
+> Total Load = Weight \* Load Factor
+
+```python
+Example:
+Airplane.weight = 3300 # lbs
+Airplane.bank_angle = 30 # degrees
+
+total_load = w * lf = 3300 * 1.2 = 3960 # lbs
+```
