@@ -1,6 +1,6 @@
 import webbrowser
 
-url = "https://www.example.com"
+url = "https://www.google.com"
 
 try:
     webbrowser.open(url)
