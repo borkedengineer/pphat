@@ -1,13 +1,17 @@
 # Practical Aerodynamics
 
-## Why do you put flaps down on an aircraft?
+## Flaps
+
+### Why do you put flaps down on an aircraft?
 
 1. Increase the drag
 2. Also increase lift
 
 > Flaps are used to increase the descent angle without lowering airspeed.
 
-## What is aircraft stability?
+## Stability
+
+### What is aircraft stability?
 
 An aircraft's stability can measured by the three axes it can rotate over.
 
@@ -41,7 +45,7 @@ Note that CG is usually infront of the center of lift and the tail exerts a down
 
 > Landing to the most aft CG limit is less stable for all speeds.
 
-### Controllability
+## Controllability
 
 Controllability is impacted by:
 
@@ -73,13 +77,13 @@ Elevator effectiveness is reduced when:
 
 ![Forces that influence longitudinal stability](../../diagrams/banks.png)
 
-#### What happens in no rudder use when banking?
+### What happens in no rudder use when banking?
 
 The aircraft will roll and yaw in the opposite direction. This is dubbed adverse yaw.
 
 **Adverse Yaw**: The tendenacy of an aircraft to yaw in the opposite direction during a turn while rolling.
 
-##### Why does this happen?
+#### Why does this happen?
 
 This is example it's a right turn (bank).
 
@@ -90,7 +94,7 @@ This is example it's a right turn (bank).
 
 > Apply rudder to correct for adverse yaw.​⬤
 
-### Load Factor
+## Load Factor
 
 Performing turns/banks increases the load factor.
 
@@ -104,7 +108,7 @@ During a turn, increase the angle of attack to prevent the aircraft from descend
 
 > The speed of the aircraft determines the excess load put on the wings.
 
-#### How much load does an aircraft experience during a turn?
+### How much load does an aircraft experience during a turn?
 
 These can be calculated using load factor charts.
 
