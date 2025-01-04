@@ -123,3 +123,40 @@ Airplane.bank_angle = 30 # degrees
 
 total_load = w * lf = 3300 * 1.2 = 3960 # lbs
 ```
+
+## Left Turning Tendancy
+
+_hold right rudder_
+
+Assume we have a two bladed propeller. As an aircraft moves forward, the blades follow a cork screw path. Both blades experience forces with respect to their movement.
+
+![Propeller blade angle](../../diagrams/prop-blade-angle.png)
+
+![Up-going blade](../../diagrams/prop-up-going-blade-aoa.png)
+
+![Down-going blade](../../diagrams/prop-down-going-blade-aoa.png)
+The diagrams depict the vectors of both the blades as they spin. Note that the relative airflow will be in the opposite direction of the resultant velocity.
+
+![alt text](../../diagrams/prop-same-aoa.png)
+![alt text](../../diagrams/prop-same-thrust.png)
+At level flight and no other factors, both blades will travel the same distance travelled, angle of attacks and thrust output.
+
+The angle between the blade and relative airflow is the blade's own angle of attack.
+
+![alt text](../../diagrams/prop-blade-pitch-up-flight-path.png)
+
+At lower aircraft speeds and high nose attitude, the propper shaft is inclined up. The rotational plane is no longer prependicular to the aircraft's flight path.
+
+![alt text](../../diagrams/prop-pitch-up-aoa.png)
+
+Drawing out the vectors, the down-going blade has a greater angle of attack than the up-going blade.
+
+![alt text](../../diagrams/prop-pitch-up-blade-travel.png)
+
+![alt text](../../diagrams/prop-pitch-up-blade-travel-distance.png)
+
+In addition, the down-going blade moves a greater distance through the air than the up-going blade.
+
+![alt text](../../diagrams/prop-pitch-up-yaw-left.png)
+
+Both effects yields the down-going blade to produce more thrust than the up-going blade. This causes the aircraft to yaw to the left.
