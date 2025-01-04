@@ -137,26 +137,26 @@ Assume we have a two bladed propeller. As an aircraft moves forward, the blades 
 ![Down-going blade](../../diagrams/prop-down-going-blade-aoa.png)
 The diagrams depict the vectors of both the blades as they spin. Note that the relative airflow will be in the opposite direction of the resultant velocity.
 
-![alt text](../../diagrams/prop-same-aoa.png)
-![alt text](../../diagrams/prop-same-thrust.png)
+![Both blades have same angle of attack](../../diagrams/prop-same-aoa.png)
+![Both blades produces same amount of thrust](../../diagrams/prop-same-thrust.png)
 At level flight and no other factors, both blades will travel the same distance travelled, angle of attacks and thrust output.
 
 The angle between the blade and relative airflow is the blade's own angle of attack.
 
-![alt text](../../diagrams/prop-blade-pitch-up-flight-path.png)
+![Rotational plane change in pitch up attitude](../../diagrams/prop-blade-pitch-up-flight-path.png)
 
-At lower aircraft speeds and high nose attitude, the propper shaft is inclined up. The rotational plane is no longer prependicular to the aircraft's flight path.
+At lower aircraft speeds and high nose attitude, the prop shaft is inclined up. The rotational plane is no longer prependicular to the aircraft's flight path.
 
-![alt text](../../diagrams/prop-pitch-up-aoa.png)
+![Down-going blade has a greater angle of attack to up-going blade](../../diagrams/prop-pitch-up-aoa.png)
 
 Drawing out the vectors, the down-going blade has a greater angle of attack than the up-going blade.
 
-![alt text](../../diagrams/prop-pitch-up-blade-travel.png)
+![Down-going blade motion arc in pitch up attitude](../../diagrams/prop-pitch-up-blade-travel.png)
 
-![alt text](../../diagrams/prop-pitch-up-blade-travel-distance.png)
+![Down-going blade travels greater distance than up-going blade](../../diagrams/prop-pitch-up-blade-travel-distance.png)
 
 In addition, the down-going blade moves a greater distance through the air than the up-going blade.
 
-![alt text](../../diagrams/prop-pitch-up-yaw-left.png)
+![Down-going blade produces more thrust and yaws the plane to the left](../../diagrams/prop-pitch-up-yaw-left.png)
 
 Both effects yields the down-going blade to produce more thrust than the up-going blade. This causes the aircraft to yaw to the left.
