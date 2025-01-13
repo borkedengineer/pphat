@@ -19,9 +19,13 @@ At any time the aircraft is flying, there's higher pressure underneath the wing 
 
 **Wingtip vortices**: Sink behind an aircraft.
 
+![Wingtip vortices sink. Avoid following](../../diagrams/wing-tip-vortices-sink.png)
+
 - To avoid them, fly above altitude of the aircraft generatin wingtip vortices.
 
-On the ground these vortices spread apart frp, each other.
+On the ground these vortices spread apart from each other.
+
+![alt text](../../diagrams/wingtip-vortices-takeoff-land.png)
 
 **Maximum Caution (wingtip vortices)**: In light quartering tail wind.
 
