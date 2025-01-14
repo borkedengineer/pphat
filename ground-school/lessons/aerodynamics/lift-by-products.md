@@ -36,3 +36,22 @@ On the ground these vortices spread apart from each other.
 **Take off behind large aircraft**: Fly above and upwind.
 
 - As soon as the larger aircraft's nose wheel leaves the ground, lift begins and so do vortices.
+
+# Ground Effect
+
+An aircraft flies within a wingspan of itself to the ground.
+
+Pressure differential usually destroys lift ontop of the aircraft's wings as air moves high pressure to low pressure.
+
+![Ground effect changes wing airflow](../../diagrams/ground-effect-airflow.png)
+
+When the ground appears it interferes with the air flowing to the top. All of the lift ontop of the wing isn't destroyed.
+
+**Ground effect** is caused by interference of Earth's surface with airflow patterns
+
+### Problems with Ground Effect
+
+1. Take off -> becoming airborne before reaching take off speed
+2. Floating -> increased drag & excess speed\*
+
+_\* occurs one wingspan from surface_
