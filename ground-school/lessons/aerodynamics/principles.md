@@ -1,6 +1,6 @@
 # Aedrodynamics
 
-## Forces
+### Forces
 
 There are four forces that act on an airplane:
 
@@ -17,7 +17,7 @@ _straight & level flight_
 
 > C<sub>l</sub> = W and (F<sub>t</sub>) = D (Equilibrium)
 
-## Lift
+# Lift
 
 ### Bernoulli's experiment
 
@@ -45,14 +45,14 @@ As you increase α you get more lift _**iff**_ air can conform to the surface of
 
 > Critical α at stall remains the same regardless of change in gross weight, airspeed or altitude.
 
-## Spins
+# Spins
 
-How do you spin an airplane?
+### How do you spin an airplane?
 
 1. The aircraft must be stalled.
 2. Both wings of the aircraft must be stalled to spin in either direction.
 
-## Frost
+# Frost
 
 Disrupts the smooth airflow over a wing and decreases its lifting capacity.
 
