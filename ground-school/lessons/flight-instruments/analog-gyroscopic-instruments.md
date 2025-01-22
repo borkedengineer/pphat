@@ -7,3 +7,5 @@
 - Usually aircraft have these for backup
 
 # Attitude Indicator
+
+![Attitude indicator](../../diagrams/attitude-indicator.png)
