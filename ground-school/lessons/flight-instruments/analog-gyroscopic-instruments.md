@@ -32,7 +32,7 @@ Shows the heading of the aircraft like a compass.
 1. Stays stable -> compass can bounce around
 2. No turning errors
 
-**Gyroscope:** Mechanical device that senses rotational motion and detect orientation to determine what direction the aircraft is facing. (Small spinning wheel.)
+**Gyroscope:** Mechanical device that senses rotational motion and detect orientation to determine what direction the aircraft is facing. _(Small spinning wheel.)_
 
 - Azis it spins around wants to stay lined up in the positoin it started ("rigidity in space")
 
