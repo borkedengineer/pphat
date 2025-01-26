@@ -48,3 +48,9 @@ Shows the heading of the aircraft like a compass.
 
 The essential instruments for piloting any aircraft.
 ![6 pack of flight instruments](../../diagrams/6-pack-flight-instruments.png)
+
+# Turn Coordinator
+
+An aircraft instrument that displays the rate of a turn and whether the aircraft is slipping or turning during the turn.
+
+![Turn coordinator](../../diagrams/turn-coordinator.png)
