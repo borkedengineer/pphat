@@ -69,6 +69,8 @@ This instrument displays the rate of a turn and whether the aircraft is slipping
 1. Controlled Turn -> ball is in the center; nose into the wind
 2. Uncontrolled Turn -> did not use rudder/aileron
 
+![Slip and skid on the turn coorindator](../../diagrams/turn-coordinator-slip-skid.png)
+
 > If there are side forces to the outside of the turn, it's a **skid**.
 >
 > - The ball moves outside of the turn
