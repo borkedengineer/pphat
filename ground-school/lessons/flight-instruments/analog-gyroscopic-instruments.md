@@ -51,6 +51,32 @@ The essential instruments for piloting any aircraft.
 
 # Turn Coordinator
 
-An aircraft instrument that displays the rate of a turn and whether the aircraft is slipping or turning during the turn.
+Indicates aircraft movement about roll and yaw axis.
+
+1. Roll axis -> when the turn starts
+2. Yaw axis -> as the turn progresses
 
 ![Turn coordinator](../../diagrams/turn-coordinator.png)
+
+This instrument displays the rate of a turn and whether the aircraft is slipping or turning during the turn.
+
+- Gyro "resists" -> turn coordinator measures this resistance
+
+> The more the little airplane banks, the faster your rate of turn.
+
+**Inclinometer**: slip/skid indicator (the ball in the center of the tube).
+
+1. Controlled Turn -> ball is in the center; nose into the wind
+2. Uncontrolled Turn -> did not use rudder/aileron
+
+> If there are side forces to the outside of the turn, it's a **skid**.
+>
+> - The ball moves outside of the turn
+
+> If there are sides to the inside of the turn, it's a **slip**.
+>
+> - The ball moves inside of the turn
+
+#### How to recover from a slip/skid?
+
+Step on the rudder on the side you feel the leaning or on the side where ball is.
