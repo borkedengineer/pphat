@@ -1,2 +1,3 @@
 # Programmer's Pilot Handbook and Tools (pphat)
-pphat is collection of resources and tools for programmers to train and automate their learning and piloting adventure.
+
+pphat is collection of resources and tools to take a programmatic approach to learning and managing your aviation career.
