@@ -4,4 +4,5 @@
 | 2023-09-26 | Sectional Plotter                     | $14.22  | $31.42        |
 | 2023-09-28 | FAA Chart: VFR Sectional Seattle SSEA | $11.50  | $42.92        |
 | 2024-05-03 | First Class Medical Certification     | $200.00 | $242.92       |
-| 2024-10-08 | Student Pilot Training Kit            | $274.88 | $517.80       |
+| 2024-05-03 | King Schools (Ground School Online)   | $644.44 | $887.36       |
+| 2024-10-08 | Student Pilot Training Kit            | $274.88 | $1162.24      |
