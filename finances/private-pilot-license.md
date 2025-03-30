@@ -6,3 +6,4 @@
 | 2024-05-03 | First Class Medical Certification     | $200.00 | $242.92       |
 | 2024-05-03 | King Schools (Ground School Online)   | $644.44 | $887.36       |
 | 2024-10-08 | Student Pilot Training Kit            | $274.88 | $1162.24      |
+| 2024-10-09 | Flight Training Safety Program        | $125.00 | $1287.24      |
