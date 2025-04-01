@@ -8,3 +8,4 @@
 | 2024-10-08 | Student Pilot Training Kit            | $274.88 | $1162.24      |
 | 2024-10-09 | Flight Training Safety Program        | $125.00 | $1287.24      |
 | 2024-10-09 | Finger Printing (FTSP)                | $99.00  | $1386.24      |
+| 2024-11-02 | Student Pilot Application             | $299.00 | $1685.24      |
