@@ -7,4 +7,4 @@
 | 23/09/24 | Aerodynamics By Products     | King Schools (Online) | 0:30 | 2:30          |
 | -------- | ---------------------------- | --------------------- | ---- | ------------- |
 | 2/4/2025 | Aerodynamics Review          | Self / Notes          | 1:30 | 1:30          |
-|          |                              |                       |      |               |
+| 2/4/2025 | Flight Instruments Review    | Self / Notes          | 1:00 | 2:30          |
