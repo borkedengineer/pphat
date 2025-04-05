@@ -7,5 +7,5 @@
 | 2024-05-03 | King Schools (Ground School Online)   | $644.44 | $887.36       |
 | 2024-10-08 | Student Pilot Training Kit            | $274.88 | $1162.24      |
 | 2024-10-09 | Flight Training Safety Program        | $125.00 | $1287.24      |
-| 2024-10-09 | Finger Printing (FTSP)                | $99.00  | $1386.24      |
+| 2024-10-09 | Fingerprint Background (FTSP)         | $99.00  | $1386.24      |
 | 2024-11-02 | Student Pilot Application             | $299.00 | $1685.24      |
