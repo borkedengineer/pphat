@@ -11,4 +11,4 @@
 | 2/5/2025  | Sectional Charts Review         | Self / Notes          | 1:00 | 3:30          |
 | 2/6/2025  | Airspace Review                 | Self / Notes          | 2:30 | 6:00          |
 | 2/10/2025 | Communications & Radar Services | Self / Notes          | 1:00 | 7:00          |
-| 2/11/2025 | Electronic Navigation           | Self / Notes          | 0:30 | 7:30          |
+| 2/11/2025 | Electronic Navigation           | Self / Notes          | 1:00 | 8:00          |
