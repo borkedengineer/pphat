@@ -12,4 +12,4 @@
 | 2/6/2025  | Airspace Review                 | Self / Notes          | 2:30 | 6:00          |
 | 2/10/2025 | Communications & Radar Services | Self / Notes          | 1:00 | 7:00          |
 | 2/11/2025 | Electronic Navigation           | Self / Notes          | 1:00 | 8:00          |
-| 2/13/2025 | Weather                         | Self / Notes          | 1:00 | 9:00          |
+| 2/13/2025 | Weather                         | Self / Notes          | 1:30 | 9:30          |
