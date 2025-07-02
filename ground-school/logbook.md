@@ -14,4 +14,4 @@
 | 2/11/2025 | Electronic Navigation           | Self / Notes          | 1:00 | 8:00          |
 | 2/13/2025 | Weather                         | Self / Notes          | 2:00 | 10:00         |
 | 2/24/2025 | Flight Operations               | Self / Notes          | 3:00 | 13:00         |
-| 6/10/2025 | Federal Aviation Regulations    | Self / Notes          | 2:30 | 15:30         |
+| 6/10/2025 | Federal Aviation Regulations    | Self / Notes          | 3:00 | 16:00         |
