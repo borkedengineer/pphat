@@ -15,4 +15,4 @@
 | 2/13/2025 | Weather                         | Self / Notes          | 2:00 | 10:00         |
 | 2/24/2025 | Flight Operations               | Self / Notes          | 3:00 | 13:00         |
 | 6/10/2025 | Federal Aviation Regulations    | Self / Notes          | 3:30 | 16:30         |
-| 7/11/2025 | Cross Country Planning          | Self / Notes          | 0:00 | 16:30         |
+| 7/9/2025  | Cross Country Planning          | Self / Notes          | 0:30 | 17:00         |
