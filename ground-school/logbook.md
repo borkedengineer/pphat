@@ -16,4 +16,4 @@
 | 2/24/2025 | Flight Operations               | Self / Notes          | 3:00 | 13:00         |
 | 6/10/2025 | Federal Aviation Regulations    | Self / Notes          | 3:30 | 16:30         |
 | 7/9/2025  | Cross Country Planning          | Self / Notes          | 2:30 | 19:00         |
-| 8/3/2025  | Aircraft Performance            | Self / Notes          | 0:00 | 19:00         |
+| 8/3/2025  | Aircraft Performance            | Self / Notes          | 0:15 | 19:15         |
