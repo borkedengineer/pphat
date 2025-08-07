@@ -17,4 +17,4 @@
 | 6/10/2025 | Federal Aviation Regulations    | Self / Notes          | 3:30 | 16:30         |
 | 7/9/2025  | Cross Country Planning          | Self / Notes          | 2:30 | 19:00         |
 | 8/3/2025  | Aircraft Performance            | Self / Notes          | 0:40 | 19:40         |
-| 8/6/2025  | Weight & Balance                | Self / Notes          | 0:00 | 20:00         |
+| 8/6/2025  | Weight & Balance                | Self / Notes          | 0:20 | 20:00         |
