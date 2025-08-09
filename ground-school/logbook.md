@@ -1,4 +1,4 @@
-# GROUND SCHOOL LOG
+# GROUND SCHOOL
 
 | DATE      | LESSON PLAN                     | INSTRUCTOR            | TIME | RUNNING TOTAL |
 | --------- | ------------------------------- | --------------------- | ---- | ------------- |
