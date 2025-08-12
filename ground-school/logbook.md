@@ -1,11 +1,16 @@
 # GROUND SCHOOL
 
+| DATE     | LESSON PLAN                  | INSTRUCTOR            | TIME | RUNNING TOTAL |
+| -------- | ---------------------------- | --------------------- | ---- | ------------- |
+| 18/09/24 | Aerodynamics Theory (Part 1) | King Schools (Online) | 0:30 | 0:30          |
+| 20/09/24 | Aerodynamics Theory (Part 2) | King Schools (Online) | 1:30 | 2:00          |
+| 23/09/24 | Aerodynamics By Products     | King Schools (Online) | 0:30 | 2:30          |
+| -------- | ---------------------------- | --------------------- | ---- | ------------- |
+
+# REVIEW
+
 | DATE      | LESSON PLAN                     | INSTRUCTOR            | TIME | RUNNING TOTAL |
 | --------- | ------------------------------- | --------------------- | ---- | ------------- |
-| 18/09/24  | Aerodynamics Theory (Part 1)    | King Schools (Online) | 0:30 | 0:30          |
-| 20/09/24  | Aerodynamics Theory (Part 2)    | King Schools (Online) | 1:30 | 2:00          |
-| 23/09/24  | Aerodynamics By Products        | King Schools (Online) | 0:30 | 2:30          |
-| --------  | ----------------------------    | --------------------- | ---- | ------------- |
 | 2/4/2025  | Aerodynamics Review             | Self / Notes          | 1:30 | 1:30          |
 | 2/4/2025  | Flight Instruments Review       | Self / Notes          | 1:00 | 2:30          |
 | 2/5/2025  | Sectional Charts Review         | Self / Notes          | 1:00 | 3:30          |
@@ -18,3 +23,4 @@
 | 7/9/2025  | Cross Country Planning          | Self / Notes          | 2:30 | 19:00         |
 | 8/3/2025  | Aircraft Performance            | Self / Notes          | 0:40 | 19:40         |
 | 8/6/2025  | Weight & Balance                | Self / Notes          | 0:20 | 20:00         |
+| --------  | ----------------------------    | --------------------- | ---- | ------------- |
