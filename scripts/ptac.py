@@ -145,13 +145,13 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python ptac.py --folder-path /path/to/images
-  python ptac.py --folder-path ./screenshots --workers 4
+  python ptac.py --source /path/to/images
+  python ptac.py --source ./screenshots --workers 4
         """
     )
 
     parser.add_argument(
-        '--folder-path', '-f',
+        '--source', '-s',
         type=str,
         required=True,
         help='Path to folder containing images to process'
@@ -177,8 +177,8 @@ Examples:
         logging.getLogger().setLevel(logging.DEBUG)
 
     try:
-        # Convert folder path to Path object
-        folder_path = Path(args.folder_path).resolve()
+        # Convert source path to Path object
+        folder_path = Path(args.source).resolve()
 
         # Get image files
         image_files = get_image_files(folder_path)
