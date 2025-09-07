@@ -7,7 +7,7 @@
 | 23/09/24 | Aerodynamics By Products     | King Schools (Online) | 0:30 | 2:30          |
 | -------- | ---------------------------- | --------------------- | ---- | ------------- |
 
-# REVIEW
+# SELF STUDY
 
 | DATE      | LESSON PLAN                     | INSTRUCTOR            | TIME | RUNNING TOTAL |
 | --------- | ------------------------------- | --------------------- | ---- | ------------- |
