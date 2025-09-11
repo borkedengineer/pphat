@@ -1,4 +1,4 @@
-# Aircraft instruments
+# Aircraft Instruments
 
 **Glass cockpit**: Aircraft with electronic displays and equipment.
 
