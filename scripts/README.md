@@ -25,7 +25,7 @@ pip install -r requirements.txt
 Process all images in a folder:
 
 ```bash
-python ptac.py --folder-path /path/to/your/images
+python ptac.py --source /path/to/your/images
 ```
 
 ### Advanced Usage
@@ -33,18 +33,18 @@ python ptac.py --folder-path /path/to/your/images
 Process images with custom number of worker threads:
 
 ```bash
-python ptac.py --folder-path ./screenshots --workers 4
+python ptac.py --source ./screenshots --workers 4
 ```
 
 Enable verbose logging:
 
 ```bash
-python ptac.py --folder-path ./screenshots --verbose
+python ptac.py --source ./screenshots --verbose
 ```
 
 ### Command Line Options
 
-- `--folder-path, -f`: Path to folder containing images to process (required)
+- `--source, -s`: Path to folder containing images to process (required)
 - `--workers, -w`: Number of worker threads (default: CPU count)
 - `--verbose, -v`: Enable verbose logging
 - `--help, -h`: Show help message
