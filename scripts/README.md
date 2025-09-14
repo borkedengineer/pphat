@@ -36,7 +36,7 @@ Process images with custom number of worker threads:
 python ptac.py --source /path/to/your/images --workers 4
 ```
 
-Enable verbose logging:
+With logs:
 
 ```bash
 python ptac.py --source /path/to/your/images --verbose
