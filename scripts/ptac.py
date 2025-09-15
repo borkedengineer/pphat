@@ -9,9 +9,10 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Tuple, Dict
 import logging
+import re
 
 try:
-    from PIL import Image
+    from PIL import Image, ImageEnhance, ImageFilter
 except ImportError:
     print("Error: PIL (Pillow) is not installed. Please run: pip install -r requirements.txt")
     sys.exit(1)
@@ -33,14 +34,92 @@ SUPPORTED_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.tif'}
 class ImageProcessor:
     """Handles image processing and OCR operations."""
 
-    def __init__(self, max_workers: int = None):
+    def __init__(self, max_workers: int = None, enable_preprocessing: bool = True):
         """
         Initialize the image processor.
 
         Args:
             max_workers: Maximum number of worker threads. Defaults to CPU count.
+            enable_preprocessing: Whether to apply image preprocessing for better OCR
         """
         self.max_workers = max_workers
+        self.enable_preprocessing = enable_preprocessing
+        self.tesseract_config = '--oem 3 --psm 3'
+
+    def preprocess_image(self, image: Image.Image) -> Image.Image:
+        """
+        Preprocess image to improve OCR accuracy.
+        
+        Args:
+            image: PIL Image object
+            
+        Returns:
+            Preprocessed PIL Image object
+        """
+        # Convert to grayscale
+        if image.mode != 'L':
+            image = image.convert('L')
+
+        # Enhance contrast moderately to preserve spacing
+        enhancer = ImageEnhance.Contrast(image)
+        image = enhancer.enhance(1.5)
+
+        # Enhance brightness slightly
+        enhancer = ImageEnhance.Brightness(image)
+        image = enhancer.enhance(1.1)
+
+        # Apply slight sharpening
+        enhancer = ImageEnhance.Sharpness(image)
+        image = enhancer.enhance(1.5)
+
+        return image
+
+    def clean_ocr_text(self, text: str) -> str:
+        """
+        Clean OCR text by removing common artifacts and unwanted characters.
+        
+        Args:
+            text: Raw OCR text
+            
+        Returns:
+            Cleaned text
+        """
+        # Remove common OCR artifacts from radio buttons and checkboxes
+        # Patterns like "CD)", "Cc)", "0)", "O)", "0 0 :", etc.
+        text = re.sub(r'[CDOo0]+\s*\)', '', text)
+        text = re.sub(r'0\s+0\s*:', '', text)
+        text = re.sub(r'0\s+0\s*', '', text)
+
+        # Add spaces after periods and before capital letters for better readability
+        text = re.sub(r'\.([A-Z])', r'. \1', text)
+
+        # Add spaces after question marks
+        text = re.sub(r'\?([A-Z])', r'? \1', text)
+
+        # Add line breaks before answer choices (A., B., C., etc.)
+        text = re.sub(r'([a-z])([A-Z]\.)', r'\1\n\2', text)
+
+        # Add spaces after commas
+        text = re.sub(r',([A-Za-z])', r', \1', text)
+
+        # Clean up multiple spaces
+        text = re.sub(r'\s+', ' ', text)
+
+        # Split into lines and clean each line
+        lines = text.split('\n')
+        cleaned_lines = []
+
+        for line in lines:
+            line = line.strip()
+            # Skip lines that are just a single character (likely OCR artifacts)
+            if len(line) == 1 and line in '0Oo':
+                continue
+            # Skip empty lines
+            if not line:
+                continue
+            cleaned_lines.append(line)
+
+        return '\n'.join(cleaned_lines)
 
     def process_image(self, image_path: Path) -> Tuple[str, str]:
         """
@@ -55,8 +134,20 @@ class ImageProcessor:
         try:
             logger.info("Processing: %s", image_path.name)
             img = Image.open(image_path)
-            text = pytesseract.image_to_string(img).strip()
-            return image_path.name, text
+
+            # Preprocess the image for better OCR if enabled
+            if self.enable_preprocessing:
+                processed_img = self.preprocess_image(img)
+            else:
+                processed_img = img
+
+            # Extract text using Tesseract with custom configuration
+            text = pytesseract.image_to_string(processed_img, config=self.tesseract_config).strip()
+
+            # Clean the extracted text
+            cleaned_text = self.clean_ocr_text(text)
+
+            return image_path.name, cleaned_text
         except Exception as e:
             logger.error("Error processing %s: %s", image_path.name, str(e))
             return image_path.name, f"ERROR: {str(e)}"
@@ -147,6 +238,7 @@ def main():
 Examples:
   python ptac.py --source /path/to/images
   python ptac.py --source ./screenshots --workers 4
+  python ptac.py --source ./test-questions --no-preprocessing
         """
     )
 
@@ -170,6 +262,12 @@ Examples:
         help='Enable verbose logging'
     )
 
+    parser.add_argument(
+        '--no-preprocessing',
+        action='store_true',
+        help='Disable image preprocessing (use original image for OCR)'
+    )
+
     args = parser.parse_args()
 
     # Set logging level
@@ -188,7 +286,10 @@ Examples:
             sys.exit(1)
 
         # Process images
-        processor = ImageProcessor(max_workers=args.workers)
+        processor = ImageProcessor(
+            max_workers=args.workers,
+            enable_preprocessing=not args.no_preprocessing
+        )
         results = processor.process_images_parallel(image_files)
 
         # Display results
