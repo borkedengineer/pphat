@@ -74,7 +74,7 @@ class ImageProcessor:
 
         return image
 
-    def clean_ocr_text(self, text: str) -> str:
+    def postprocess_ocr_text(self, text: str) -> str:
         """
         Clean OCR text by removing common artifacts and unwanted characters.
         
@@ -145,7 +145,7 @@ class ImageProcessor:
             text = pytesseract.image_to_string(processed_img, config=self.tesseract_config).strip()
 
             # Clean the extracted text
-            cleaned_text = self.clean_ocr_text(text)
+            cleaned_text = self.postprocess_ocr_text(text)
 
             return image_path.name, cleaned_text
         except Exception as e:
