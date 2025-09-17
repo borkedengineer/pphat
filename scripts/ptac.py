@@ -4,15 +4,15 @@ Image to Text Converter (PTAC)
 Processes images in parallel to extract text using OCR.
 """
 import argparse
-import sys
-from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import List, Tuple, Dict
 import logging
+from pathlib import Path
 import re
+import sys
+from typing import Dict, List, Tuple
 
 try:
-    from PIL import Image, ImageEnhance, ImageFilter
+    from PIL import Image, ImageEnhance
 except ImportError:
     print("Error: PIL (Pillow) is not installed. Please run: pip install -r requirements.txt")
     sys.exit(1)
