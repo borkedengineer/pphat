@@ -55,3 +55,5 @@ In cases of icing, turn the heat switch on from the instrument panels.
 #### Which instrument is affected?
 
 > All instruments (altimeter, vertical speed & airspeed)
+
+# Attitudes
