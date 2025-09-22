@@ -25,6 +25,11 @@
 | 8/6/2025  | Weight & Balance                | Self / Notes          | 0:20 | 20:00         |
 | --------  | ----------------------------    | --------------------- | ---- | ------------- |
 
+# INSTRUCTOR REVIEW SESSIONS
+
+| DATE | LESSON PLAN | INSTRUCTOR | TIME | RUNNING TOTAL |
+| ---- | ----------- | ---------- | ---- | ------------- |
+
 # PRACTICE EXAMS
 
 | DATE      | Score                        | Notes                    | TIME | RUNNING TOTAL |
