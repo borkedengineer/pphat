@@ -57,3 +57,21 @@ In cases of icing, turn the heat switch on from the instrument panels.
 > All instruments (altimeter, vertical speed & airspeed)
 
 # Attitudes
+
+**Indicated Altitude** -> what your altimeter reads
+
+**True Altitude** -> vertical height distance above sea level
+
+**Absolute Altitude** -> vertical distance above the surface being flown over; usually calculated
+
+## Pressure Altitude
+
+**A _reference altitude_ independent of local weather or pressure changes in respect to standard pressure**. This helps for altitude measurement and performance calculations.
+
+**Standard Pressure:** 29.92 inHg (or 1013.25 hPa)
+
+Formula:
+
+```md
+Pressure Altitude = (Standard Pressure − Current Setting) × 1,000 + Elevation
+```
