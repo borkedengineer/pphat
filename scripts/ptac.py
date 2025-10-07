@@ -90,20 +90,11 @@ class ImageProcessor:
         text = re.sub(r'0\s+0\s*:', '', text)
         text = re.sub(r'0\s+0\s*', '', text)
 
-        # Add spaces after periods and before capital letters for better readability
-        text = re.sub(r'\.([A-Z])', r'. \1', text)
+        # Clean up multiple spaces but preserve newlines
+        text = re.sub(r'[ \t]+', ' ', text)
 
-        # Add spaces after question marks
-        text = re.sub(r'\?([A-Z])', r'? \1', text)
-
-        # Add line breaks before answer choices (A., B., C., etc.)
-        text = re.sub(r'([a-z])([A-Z]\.)', r'\1\n\2', text)
-
-        # Add spaces after commas
-        text = re.sub(r',([A-Za-z])', r', \1', text)
-
-        # Clean up multiple spaces
-        text = re.sub(r'\s+', ' ', text)
+        # Clean up multiple newlines
+        text = re.sub(r'\n\s*\n', '\n', text)
 
         # Split into lines and clean each line
         lines = text.split('\n')
@@ -223,7 +214,11 @@ def display_results(results: Dict[str, str]) -> None:
         if text.startswith("ERROR:"):
             print(f"❌ {text}")
         else:
-            print(text)
+            # Split text into lines and format properly
+            lines = text.split('\n')
+            for line in lines:
+                if line.strip():  # Only print non-empty lines
+                    print(line.strip())
         print("-" * 40)
 
 
