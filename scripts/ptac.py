@@ -85,10 +85,39 @@ class ImageProcessor:
             Cleaned text
         """
         # Remove common OCR artifacts from radio buttons and checkboxes
-        # Patterns like "CD)", "Cc)", "0)", "O)", "0 0 :", etc.
+        # Patterns like "CD)", "Cc)", "0)", "O)", "A. Cc)", ". Cc)", etc.
         text = re.sub(r'[CDOo0]+\s*\)', '', text)
         text = re.sub(r'0\s+0\s*:', '', text)
         text = re.sub(r'0\s+0\s*', '', text)
+        text = re.sub(r'[A-Z]\.\s*Cc\)', '', text)  # Remove "A. Cc)", "B. Cc)", etc.
+        text = re.sub(r'\.\s*Cc\)', '', text)       # Remove ". Cc)"
+        text = re.sub(r'c\.\s*Cc\)', '', text)      # Remove "c. Cc)" (lowercase)
+
+        # Fix specific OCR errors
+        text = re.sub(r'Cc\s+([A-Z])', r'C. \1', text)  # "Cc Damage" -> "C. Damage"
+        text = re.sub(r':\s*([A-Z])', r'A. \1', text)   # ": A full stall" -> "A. A full stall"
+
+        # Fix lowercase c that should be C.
+        text = re.sub(r'^c\s+', 'C. ', text, flags=re.MULTILINE)  # "c Full fuel" -> "C. Full fuel"
+        text = re.sub(r'\nc\s+', '\nC. ', text)                  # "c Full fuel" -> "C. Full fuel" on new line
+
+        # Remove standalone C. or c that appear without content
+        text = re.sub(r'^C\.\s*$', '', text, flags=re.MULTILINE)  # Remove standalone "C."
+        text = re.sub(r'^c\s*$', '', text, flags=re.MULTILINE)    # Remove standalone "c"
+        text = re.sub(r'\nC\.\s*\n', '\n', text)                 # Remove "C." on its own line
+        text = re.sub(r'\nc\s*\n', '\n', text)                   # Remove "c" on its own line
+
+        # Remove C. that appears with content (OCR artifacts)
+        text = re.sub(r'^C\.\s+', '', text, flags=re.MULTILINE)   # Remove "C. " at start of line
+        text = re.sub(r'\nC\.\s+', '\n', text)                   # Remove "C. " after newline
+
+        # Fix semicolons that should be answer choices
+        text = re.sub(r';\s*\n([A-Z])', r'\nB. \1', text)        # "; 1 and 2 only" -> "B. 1 and 2 only"
+        text = re.sub(r';\s+([A-Z])', r'B. \1', text)            # "; 1 and 2 only" -> "B. 1 and 2 only" (no newline)
+
+        # Clean up spacing around answer choices
+        text = re.sub(r'\s+([A-Z]\.\s)', r'\n\1', text)  # Ensure proper line breaks before A., B., C.
+        text = re.sub(r'\s+(c\s)', r'\n\1', text)        # Ensure proper line breaks before lowercase c
 
         # Clean up multiple spaces but preserve newlines
         text = re.sub(r'[ \t]+', ' ', text)
