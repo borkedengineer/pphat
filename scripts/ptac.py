@@ -23,11 +23,9 @@ except ImportError:
     print("Error: pytesseract is not installed. Please run: pip install -r requirements.txt")
     sys.exit(1)
 
-# Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Supported image extensions
 SUPPORTED_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.tif'}
 
 
