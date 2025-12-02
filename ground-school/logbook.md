@@ -1,5 +1,7 @@
 # GROUND SCHOOL
 
+### Graduation: November 18, 2025
+
 | DATE     | LESSON PLAN                  | INSTRUCTOR            | TIME | RUNNING TOTAL |
 | -------- | ---------------------------- | --------------------- | ---- | ------------- |
 | 18/09/24 | Aerodynamics Theory (Part 1) | King Schools (Online) | 0:30 | 0:30          |
@@ -37,5 +39,5 @@
 | 8/13/2025  | Practice     | 51/60 (85%)               | Review ele aviation, W&B    | 1:30 | 1:30          |
 | 10/1/2025  | GS Written 1 | 60/60 (100%)              | Review VOR, EB-6, weather   | 1:00 | 2:30          |
 | 11/2/2025  | GS Written 2 | 57/60 (95%)               | Review instruments, FAA reg | 1:30 | 4:00          |
-| 11/11/2025 | GS Written 3 | -                         | -                           | 1:05 | 5:05          |
+| 11/11/2025 | GS Written 3 | 59/60 (98.3%)             | Review VOR, ele navs        | 1:30 | 5:30          |
 | --------   | --------     | ------------------------- | ---------------------       | ---- | ------------- |
