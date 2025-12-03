@@ -105,9 +105,21 @@ class ImageProcessor:
         text = re.sub(r'\nC\.\s*\n', '\n', text)                 # Remove "C." on its own line
         text = re.sub(r'\nc\s*\n', '\n', text)                   # Remove "c" on its own line
 
-        # Remove C. that appears with content (OCR artifacts)
-        text = re.sub(r'^C\.\s+', '', text, flags=re.MULTILINE)   # Remove "C. " at start of line
-        text = re.sub(r'\nC\.\s+', '\n', text)                   # Remove "C. " after newline
+        # Remove answer choice prefixes (A., B., C., Cc., etc.) - we'll enumerate later
+        text = re.sub(r'^[A-Z]\.\s+', '', text, flags=re.MULTILINE)   # Remove "A. ", "B. ", "C. " at start of line
+        text = re.sub(r'\n[A-Z]\.\s+', '\n', text)                   # Remove "A. ", "B. ", "C. " after newline
+        text = re.sub(r'^Cc\.\s+', '', text, flags=re.MULTILINE)     # Remove "Cc. " at start of line
+        text = re.sub(r'\nCc\.\s+', '\n', text)                      # Remove "Cc. " after newline
+
+        # Remove standalone colons, semicolons, periods, and quotes at start of lines (OCR artifacts)
+        text = re.sub(r'^:\s*$', '', text, flags=re.MULTILINE)   # Remove standalone ":"
+        text = re.sub(r'^;\s*$', '', text, flags=re.MULTILINE)   # Remove standalone ";"
+        text = re.sub(r'\n:\s*\n', '\n', text)                  # Remove ":" on its own line
+        text = re.sub(r'\n;\s*\n', '\n', text)                  # Remove ";" on its own line
+        text = re.sub(r'^\.\s+', '', text, flags=re.MULTILINE)  # Remove ". " at start of line
+        text = re.sub(r'\n\.\s+', '\n', text)                   # Remove ". " after newline
+        text = re.sub(r"^'\s+", '', text, flags=re.MULTILINE)   # Remove "' " at start of line
+        text = re.sub(r"\n'\s+", '\n', text)                    # Remove "' " after newline
 
         # Fix semicolons that should be answer choices
         text = re.sub(r';\s*\n([A-Z])', r'\nB. \1', text)        # "; 1 and 2 only" -> "B. 1 and 2 only"
