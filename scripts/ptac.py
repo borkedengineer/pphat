@@ -151,15 +151,16 @@ class ImageProcessor:
 
         return '\n'.join(cleaned_lines)
 
-    def process_image(self, image_path: Path) -> Tuple[str, str]:
+    def process_image(self, image_path: Path, base_paths: List[Path] = None) -> Tuple[str, str]:
         """
         Process a single image and extract text.
 
         Args:
             image_path: Path to the image file
+            base_paths: List of base paths to compute relative path from
 
         Returns:
-            Tuple of (filename, extracted_text)
+            Tuple of (display_key, extracted_text) where display_key includes folder info
         """
         try:
             logger.info("Processing: %s", image_path.name)
@@ -177,33 +178,57 @@ class ImageProcessor:
             # Clean the extracted text
             cleaned_text = self.postprocess_ocr_text(text)
 
-            return image_path.name, cleaned_text
+            # Create display key with folder information
+            if base_paths and len(base_paths) > 1:
+                # Multiple folders: include folder name in display
+                for base_path in base_paths:
+                    try:
+                        relative_path = image_path.relative_to(base_path)
+                        # If file is directly in base path, use folder_name/filename
+                        # Otherwise use the full relative path
+                        if relative_path.parent == Path('.'):
+                            display_key = f"{base_path.name}/{relative_path.name}"
+                        else:
+                            display_key = f"{base_path.name}/{relative_path}"
+                        break
+                    except ValueError:
+                        continue
+                else:
+                    # Fallback if we can't find a base path
+                    display_key = str(image_path)
+            else:
+                # Single folder: just show filename
+                display_key = image_path.name
+
+            return display_key, cleaned_text
         except Exception as e:
             logger.error("Error processing %s: %s", image_path.name, str(e))
-            return image_path.name, f"ERROR: {str(e)}"
+            display_key = image_path.name if not base_paths else str(image_path)
+            return display_key, f"ERROR: {str(e)}"
 
-    def process_images_parallel(self, image_paths: List[Path]) -> Dict[str, str]:
+    def process_images_parallel(self, image_paths: List[Path], base_paths: List[Path] = None) -> Dict[str, str]:
         """
         Process multiple images in parallel.
 
         Args:
             image_paths: List of image file paths
+            base_paths: List of base paths to compute relative paths from
 
         Returns:
-            Dictionary mapping filename to extracted text
+            Dictionary mapping display key (with folder info) to extracted text
         """
         results = {}
 
         with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             future_to_path = {
-                executor.submit(self.process_image, path): path
+                executor.submit(self.process_image, path, base_paths): path
                 for path in image_paths
             }
 
             for future in as_completed(future_to_path):
-                filename, text = future.result()
-                results[filename] = text
-                logger.info("Completed: %s", filename)
+                display_key, text = future.result()
+                results[display_key] = text
+                logger.info("Completed: %s", display_key)
 
         return results
 
@@ -233,8 +258,33 @@ def get_image_files(folder_path: Path) -> List[Path]:
         logger.warning("No supported image files found in %s", folder_path)
         return []
 
-    logger.info("Found %d image files to process", len(image_files))
+    logger.info("Found %d image files in %s", len(image_files), folder_path)
     return sorted(image_files)
+
+
+def get_image_files_from_multiple_folders(folder_paths: List[Path]) -> List[Path]:
+    """
+    Get all supported image files from multiple folders.
+
+    Args:
+        folder_paths: List of paths to folders containing images
+
+    Returns:
+        List of image file paths from all folders
+    """
+    all_image_files = []
+    for folder_path in folder_paths:
+        try:
+            image_files = get_image_files(folder_path)
+            all_image_files.extend(image_files)
+        except (FileNotFoundError, NotADirectoryError) as e:
+            logger.warning("Skipping %s: %s", folder_path, str(e))
+            continue
+
+    if all_image_files:
+        logger.info("Total: %d image files found across %d folder(s)",
+                   len(all_image_files), len(folder_paths))
+    return sorted(all_image_files)
 
 
 def display_results(results: Dict[str, str]) -> None:
@@ -242,14 +292,14 @@ def display_results(results: Dict[str, str]) -> None:
     Display the OCR results to console.
 
     Args:
-        results: Dictionary mapping filename to extracted text
+        results: Dictionary mapping display key (with folder info) to extracted text
     """
     print("\n" + "="*80)
     print("OCR RESULTS")
     print("="*80)
 
-    for filename, text in results.items():
-        print(f"\n--- {filename} ---")
+    for display_key, text in sorted(results.items()):
+        print(f"\n--- {display_key} ---")
         if text.startswith("ERROR:"):
             print(f"❌ {text}")
         else:
@@ -273,14 +323,17 @@ Examples:
   python ptac.py --source /path/to/images
   python ptac.py --source ./screenshots --workers 4
   python ptac.py --source ./test-questions --no-preprocessing
+  python ptac.py --source ./folder1 ./folder2 ./folder3
+  python ptac.py -s practice-tests/2025-10-11 practice-tests/2025-11-02
         """
     )
 
     parser.add_argument(
         '--source', '-s',
         type=str,
+        nargs='+',
         required=True,
-        help='Path to folder containing images to process'
+        help='Path(s) to folder(s) containing images to process (can specify multiple)'
     )
 
     parser.add_argument(
@@ -309,11 +362,11 @@ Examples:
         logging.getLogger().setLevel(logging.DEBUG)
 
     try:
-        # Convert source path to Path object
-        folder_path = Path(args.source).resolve()
+        # Convert source paths to Path objects
+        folder_paths = [Path(source).resolve() for source in args.source]
 
-        # Get image files
-        image_files = get_image_files(folder_path)
+        # Get image files from all specified folders
+        image_files = get_image_files_from_multiple_folders(folder_paths)
 
         if not image_files:
             print("No image files found to process.")
@@ -324,7 +377,7 @@ Examples:
             max_workers=args.workers,
             enable_preprocessing=not args.no_preprocessing
         )
-        results = processor.process_images_parallel(image_files)
+        results = processor.process_images_parallel(image_files, folder_paths)
 
         # Display results
         display_results(results)
