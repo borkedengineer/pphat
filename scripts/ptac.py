@@ -87,47 +87,47 @@ class ImageProcessor:
         text = re.sub(r'[CDOo0]+\s*\)', '', text)
         text = re.sub(r'0\s+0\s*:', '', text)
         text = re.sub(r'0\s+0\s*', '', text)
-        text = re.sub(r'[A-Z]\.\s*Cc\)', '', text)  # Remove "A. Cc)", "B. Cc)", etc.
-        text = re.sub(r'\.\s*Cc\)', '', text)       # Remove ". Cc)"
-        text = re.sub(r'c\.\s*Cc\)', '', text)      # Remove "c. Cc)" (lowercase)
+        text = re.sub(r'[A-Z]\.\s*Cc\)', '', text)                              # Remove "A. Cc)", "B. Cc)", etc.
+        text = re.sub(r'\.\s*Cc\)', '', text)                                   # Remove ". Cc)"
+        text = re.sub(r'c\.\s*Cc\)', '', text)                                  # Remove "c. Cc)" (lowercase)
 
         # Fix specific OCR errors
-        text = re.sub(r'Cc\s+([A-Z])', r'C. \1', text)  # "Cc Damage" -> "C. Damage"
-        text = re.sub(r':\s*([A-Z])', r'A. \1', text)   # ": A full stall" -> "A. A full stall"
+        text = re.sub(r'Cc\s+([A-Z])', r'C. \1', text)                          # "Cc Damage" -> "C. Damage"
+        text = re.sub(r':\s*([A-Z])', r'A. \1', text)                           # ": A full stall" -> "A. A full stall"
 
         # Fix lowercase c that should be C.
-        text = re.sub(r'^c\s+', 'C. ', text, flags=re.MULTILINE)  # "c Full fuel" -> "C. Full fuel"
-        text = re.sub(r'\nc\s+', '\nC. ', text)                  # "c Full fuel" -> "C. Full fuel" on new line
+        text = re.sub(r'^c\s+', 'C. ', text, flags=re.MULTILINE)                # "c Full fuel" -> "C. Full fuel"
+        text = re.sub(r'\nc\s+', '\nC. ', text)                                 # "c Full fuel" -> "C. Full fuel" on new line
 
         # Remove standalone C. or c that appear without content
-        text = re.sub(r'^C\.\s*$', '', text, flags=re.MULTILINE)  # Remove standalone "C."
-        text = re.sub(r'^c\s*$', '', text, flags=re.MULTILINE)    # Remove standalone "c"
-        text = re.sub(r'\nC\.\s*\n', '\n', text)                 # Remove "C." on its own line
-        text = re.sub(r'\nc\s*\n', '\n', text)                   # Remove "c" on its own line
+        text = re.sub(r'^C\.\s*$', '', text, flags=re.MULTILINE)                # Remove standalone "C."
+        text = re.sub(r'^c\s*$', '', text, flags=re.MULTILINE)                  # Remove standalone "c"
+        text = re.sub(r'\nC\.\s*\n', '\n', text)                                # Remove "C." on its own line
+        text = re.sub(r'\nc\s*\n', '\n', text)                                  # Remove "c" on its own line
 
         # Remove answer choice prefixes (A., B., C., Cc., etc.) - we'll enumerate later
-        text = re.sub(r'^[A-Z]\.\s+', '', text, flags=re.MULTILINE)   # Remove "A. ", "B. ", "C. " at start of line
-        text = re.sub(r'\n[A-Z]\.\s+', '\n', text)                   # Remove "A. ", "B. ", "C. " after newline
-        text = re.sub(r'^Cc\.\s+', '', text, flags=re.MULTILINE)     # Remove "Cc. " at start of line
-        text = re.sub(r'\nCc\.\s+', '\n', text)                      # Remove "Cc. " after newline
+        text = re.sub(r'^[A-Z]\.\s+', '', text, flags=re.MULTILINE)             # Remove "A. ", "B. ", "C. " at start of line
+        text = re.sub(r'\n[A-Z]\.\s+', '\n', text)                              # Remove "A. ", "B. ", "C. " after newline
+        text = re.sub(r'^Cc\.\s+', '', text, flags=re.MULTILINE)                # Remove "Cc. " at start of line
+        text = re.sub(r'\nCc\.\s+', '\n', text)                                 # Remove "Cc. " after newline
 
         # Remove standalone colons, semicolons, periods, and quotes at start of lines (OCR artifacts)
-        text = re.sub(r'^:\s*$', '', text, flags=re.MULTILINE)   # Remove standalone ":"
-        text = re.sub(r'^;\s*$', '', text, flags=re.MULTILINE)   # Remove standalone ";"
-        text = re.sub(r'\n:\s*\n', '\n', text)                  # Remove ":" on its own line
-        text = re.sub(r'\n;\s*\n', '\n', text)                  # Remove ";" on its own line
-        text = re.sub(r'^\.\s+', '', text, flags=re.MULTILINE)  # Remove ". " at start of line
-        text = re.sub(r'\n\.\s+', '\n', text)                   # Remove ". " after newline
-        text = re.sub(r"^'\s+", '', text, flags=re.MULTILINE)   # Remove "' " at start of line
-        text = re.sub(r"\n'\s+", '\n', text)                    # Remove "' " after newline
+        text = re.sub(r'^:\s*$', '', text, flags=re.MULTILINE)                  # Remove standalone ":"
+        text = re.sub(r'^;\s*$', '', text, flags=re.MULTILINE)                  # Remove standalone ";"
+        text = re.sub(r'\n:\s*\n', '\n', text)                                  # Remove ":" on its own line
+        text = re.sub(r'\n;\s*\n', '\n', text)                                  # Remove ";" on its own line
+        text = re.sub(r'^\.\s+', '', text, flags=re.MULTILINE)                  # Remove ". " at start of line
+        text = re.sub(r'\n\.\s+', '\n', text)                                   # Remove ". " after newline
+        text = re.sub(r"^'\s+", '', text, flags=re.MULTILINE)                   # Remove "' " at start of line
+        text = re.sub(r"\n'\s+", '\n', text)                                    # Remove "' " after newline
 
         # Fix semicolons that should be answer choices
-        text = re.sub(r';\s*\n([A-Z])', r'\nB. \1', text)        # "; 1 and 2 only" -> "B. 1 and 2 only"
-        text = re.sub(r';\s+([A-Z])', r'B. \1', text)            # "; 1 and 2 only" -> "B. 1 and 2 only" (no newline)
+        text = re.sub(r';\s*\n([A-Z])', r'\nB. \1', text)                       # "; 1 and 2 only" -> "B. 1 and 2 only"
+        text = re.sub(r';\s+([A-Z])', r'B. \1', text)                           # "; 1 and 2 only" -> "B. 1 and 2 only" (no newline)
 
         # Clean up spacing around answer choices
-        text = re.sub(r'\s+([A-Z]\.\s)', r'\n\1', text)  # Ensure proper line breaks before A., B., C.
-        text = re.sub(r'\s+(c\s)', r'\n\1', text)        # Ensure proper line breaks before lowercase c
+        text = re.sub(r'\s+([A-Z]\.\s)', r'\n\1', text)                         # Ensure proper line breaks before A., B., C.
+        text = re.sub(r'\s+(c\s)', r'\n\1', text)                               # Ensure proper line breaks before lowercase c
 
         # Clean up multiple spaces but preserve newlines
         text = re.sub(r'[ \t]+', ' ', text)
