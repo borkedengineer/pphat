@@ -58,15 +58,12 @@ class ImageProcessor:
         if image.mode != 'L':
             image = image.convert('L')
 
-        # Enhance contrast moderately to preserve spacing
         enhancer = ImageEnhance.Contrast(image)
         image = enhancer.enhance(1.5)
 
-        # Enhance brightness slightly
         enhancer = ImageEnhance.Brightness(image)
         image = enhancer.enhance(1.1)
 
-        # Apply slight sharpening
         enhancer = ImageEnhance.Sharpness(image)
         image = enhancer.enhance(1.5)
 
@@ -135,7 +132,6 @@ class ImageProcessor:
         # Clean up multiple newlines
         text = re.sub(r'\n\s*\n', '\n', text)
 
-        # Split into lines and clean each line
         lines = text.split('\n')
         cleaned_lines = []
 
@@ -172,20 +168,14 @@ class ImageProcessor:
             else:
                 processed_img = img
 
-            # Extract text using Tesseract with custom configuration
             text = pytesseract.image_to_string(processed_img, config=self.tesseract_config).strip()
 
-            # Clean the extracted text
             cleaned_text = self.postprocess_ocr_text(text)
 
-            # Create display key with folder information
             if base_paths and len(base_paths) > 1:
-                # Multiple folders: include folder name in display
                 for base_path in base_paths:
                     try:
                         relative_path = image_path.relative_to(base_path)
-                        # If file is directly in base path, use folder_name/filename
-                        # Otherwise use the full relative path
                         if relative_path.parent == Path('.'):
                             display_key = f"{base_path.name}/{relative_path.name}"
                         else:
@@ -194,10 +184,8 @@ class ImageProcessor:
                     except ValueError:
                         continue
                 else:
-                    # Fallback if we can't find a base path
                     display_key = str(image_path)
             else:
-                # Single folder: just show filename
                 display_key = image_path.name
 
             return display_key, cleaned_text
@@ -303,10 +291,9 @@ def display_results(results: Dict[str, str]) -> None:
         if text.startswith("ERROR:"):
             print(f"❌ {text}")
         else:
-            # Split text into lines and format properly
             lines = text.split('\n')
             for line in lines:
-                if line.strip():  # Only print non-empty lines
+                if line.strip():
                     print(line.strip())
         print("-" * 40)
 
@@ -357,32 +344,25 @@ Examples:
 
     args = parser.parse_args()
 
-    # Set logging level
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
 
     try:
-        # Convert source paths to Path objects
         folder_paths = [Path(source).resolve() for source in args.source]
-
-        # Get image files from all specified folders
         image_files = get_image_files_from_multiple_folders(folder_paths)
 
         if not image_files:
             print("No image files found to process.")
             sys.exit(1)
 
-        # Process images
         processor = ImageProcessor(
             max_workers=args.workers,
             enable_preprocessing=not args.no_preprocessing
         )
         results = processor.process_images_parallel(image_files, folder_paths)
 
-        # Display results
         display_results(results)
 
-        # Summary
         successful = sum(1 for text in results.values() if not text.startswith("ERROR:"))
         total = len(results)
         print(f"\n📊 Summary: {successful}/{total} images processed successfully")
