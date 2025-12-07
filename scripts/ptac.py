@@ -162,7 +162,6 @@ class ImageProcessor:
             logger.info("Processing: %s", image_path.name)
             img = Image.open(image_path)
 
-            # Preprocess the image for better OCR if enabled
             if self.enable_preprocessing:
                 processed_img = self.preprocess_image(img)
             else:
