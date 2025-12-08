@@ -4,12 +4,13 @@ Image to Text Converter (PTAC)
 Processes images in parallel to extract text using OCR.
 """
 import argparse
+import csv
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
 from pathlib import Path
 import re
 import sys
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
 
 try:
     from PIL import Image, ImageEnhance
@@ -297,6 +298,160 @@ def display_results(results: Dict[str, str]) -> None:
         print("-" * 40)
 
 
+def parse_answer_key(answer_key_path: Path) -> Dict[int, Tuple[str, str]]:
+    """
+    Parse an answer key file and extract question number and answer text.
+
+    Args:
+        answer_key_path: Path to the answer-key.md file
+
+    Returns:
+        Dictionary mapping question number to (answer_letter, answer_text) tuple.
+        answer_letter will be an empty string since answer keys now only contain text.
+    """
+    answers = {}
+    if not answer_key_path.exists():
+        logger.warning("Answer key not found: %s", answer_key_path)
+        return answers
+
+    try:
+        with open(answer_key_path, 'r', encoding='utf-8') as f:
+            for line_num, line in enumerate(f, start=1):
+                line = line.strip()
+                if not line:
+                    continue
+                # Answer key now only contains the answer text (no letter prefix)
+                answer_text = line
+                answers[line_num] = ('', answer_text)
+    except Exception as e:
+        logger.error("Error reading answer key %s: %s", answer_key_path, str(e))
+
+    return answers
+
+
+def get_question_images(folder_path: Path) -> Dict[int, Path]:
+    """
+    Get question image files from a folder, sorted by question number.
+
+    Args:
+        folder_path: Path to the folder containing question images
+
+    Returns:
+        Dictionary mapping question number to image path
+    """
+    question_images = {}
+    pattern = re.compile(r'^q(\d+)\.(png|jpg|jpeg)$', re.IGNORECASE)
+
+    for file_path in folder_path.iterdir():
+        if file_path.is_file():
+            match = pattern.match(file_path.name)
+            if match:
+                question_num = int(match.group(1))
+                question_images[question_num] = file_path
+
+    return question_images
+
+
+def export_to_csv(folder_path: Path, questions: Dict[int, str], answers: Dict[int, Tuple[str, str]], 
+                   output_path: Optional[Path] = None) -> Path:
+    """
+    Export questions and answers to a CSV file.
+
+    Args:
+        folder_path: Path to the folder containing the questions
+        questions: Dictionary mapping question number to question text
+        answers: Dictionary mapping question number to (answer_letter, answer_text) tuple
+        output_path: Optional path for the CSV file. If None, uses folder_path/questions.csv
+
+    Returns:
+        Path to the created CSV file
+    """
+    if output_path is None:
+        output_path = folder_path / "questions.csv"
+
+    with open(output_path, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        # Write headers
+        writer.writerow(['Question Number', 'Question', 'Answer Text'])
+
+        # Get all question numbers and sort them
+        all_question_nums = sorted(set(questions.keys()) | set(answers.keys()))
+
+        for q_num in all_question_nums:
+            question_text = questions.get(q_num, '').replace('\n', ' ').strip()
+            if q_num in answers:
+                _, answer_text = answers[q_num]
+            else:
+                answer_text = ''
+            writer.writerow([q_num, question_text, answer_text])
+
+    logger.info("Exported CSV to: %s", output_path)
+    return output_path
+
+
+def process_folder_to_csv(folder_path: Path, processor: ImageProcessor) -> Optional[Path]:
+    """
+    Process a folder containing question images and answer key, then export to CSV.
+
+    Args:
+        folder_path: Path to the folder to process
+        processor: ImageProcessor instance for OCR
+
+    Returns:
+        Path to the created CSV file, or None if processing failed
+    """
+    answer_key_path = folder_path / "answer-key.md"
+    if not answer_key_path.exists():
+        logger.warning("No answer-key.md found in %s, skipping", folder_path)
+        return None
+
+    # Parse answer key
+    answers = parse_answer_key(answer_key_path)
+    logger.info("Parsed %d answers from %s", len(answers), answer_key_path)
+
+    # Get question images
+    question_images = get_question_images(folder_path)
+    if not question_images:
+        logger.warning("No question images found in %s", folder_path)
+        return None
+
+    logger.info("Found %d question images in %s", len(question_images), folder_path)
+
+    # Process question images with OCR
+    image_paths = list(question_images.values())
+    ocr_results = processor.process_images_parallel(image_paths, [folder_path])
+
+    # Map OCR results to question numbers
+    questions = {}
+    for q_num, img_path in question_images.items():
+        img_name = img_path.name
+        question_text = ''
+
+        # Try multiple ways to find the OCR result
+        # 1. Try by filename only
+        if img_name in ocr_results:
+            question_text = ocr_results[img_name]
+        # 2. Try with folder prefix
+        elif f"{folder_path.name}/{img_name}" in ocr_results:
+            question_text = ocr_results[f"{folder_path.name}/{img_name}"]
+        # 3. Try by matching any key that ends with the filename
+        else:
+            for key, text in ocr_results.items():
+                if key.endswith(img_name) or key == str(img_path):
+                    question_text = text
+                    break
+
+        # If still not found or error, use empty string
+        if question_text.startswith("ERROR:"):
+            question_text = ''
+
+        questions[q_num] = question_text
+
+    # Export to CSV
+    csv_path = export_to_csv(folder_path, questions, answers)
+    return csv_path
+
+
 def main():
     """
     Main function to handle command-line execution.
@@ -311,6 +466,7 @@ Examples:
   python ptac.py --source ./test-questions --no-preprocessing
   python ptac.py --source ./folder1 ./folder2 ./folder3
   python ptac.py -s practice-tests/2025-10-11 practice-tests/2025-11-02
+  python ptac.py --export-csv --source practice-tests/2025-10-11 practice-tests/2025-11-11
         """
     )
 
@@ -341,6 +497,12 @@ Examples:
         help='Disable image preprocessing (use original image for OCR)'
     )
 
+    parser.add_argument(
+        '--export-csv',
+        action='store_true',
+        help='Export questions and answers to CSV files (one per folder with answer-key.md)'
+    )
+
     args = parser.parse_args()
 
     if args.verbose:
@@ -348,23 +510,43 @@ Examples:
 
     try:
         folder_paths = [Path(source).resolve() for source in args.source]
-        image_files = get_image_files_from_multiple_folders(folder_paths)
-
-        if not image_files:
-            print("No image files found to process.")
-            sys.exit(1)
 
         processor = ImageProcessor(
             max_workers=args.workers,
             enable_preprocessing=not args.no_preprocessing
         )
-        results = processor.process_images_parallel(image_files, folder_paths)
 
-        display_results(results)
+        if args.export_csv:
+            # Export mode: process each folder and create CSV files
+            csv_files = []
+            for folder_path in folder_paths:
+                if not folder_path.exists() or not folder_path.is_dir():
+                    logger.warning("Skipping invalid folder: %s", folder_path)
+                    continue
+                csv_path = process_folder_to_csv(folder_path, processor)
+                if csv_path:
+                    csv_files.append(csv_path)
 
-        successful = sum(1 for text in results.values() if not text.startswith("ERROR:"))
-        total = len(results)
-        print(f"\n📊 Summary: {successful}/{total} images processed successfully")
+            if csv_files:
+                print(f"\n✅ Successfully exported {len(csv_files)} CSV file(s):")
+                for csv_path in csv_files:
+                    print(f"   - {csv_path}")
+            else:
+                print("No CSV files were created. Make sure folders contain answer-key.md files.")
+        else:
+            # Normal OCR mode: process images and display results
+            image_files = get_image_files_from_multiple_folders(folder_paths)
+
+            if not image_files:
+                print("No image files found to process.")
+                sys.exit(1)
+
+            results = processor.process_images_parallel(image_files, folder_paths)
+            display_results(results)
+
+            successful = sum(1 for text in results.values() if not text.startswith("ERROR:"))
+            total = len(results)
+            print(f"\n📊 Summary: {successful}/{total} images processed successfully")
 
     except KeyboardInterrupt:
         logger.info("Processing interrupted by user")
