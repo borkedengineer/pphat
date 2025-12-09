@@ -320,7 +320,6 @@ def parse_answer_key(answer_key_path: Path) -> Dict[int, Tuple[str, str]]:
                 line = line.strip()
                 if not line:
                     continue
-                # Answer key now only contains the answer text (no letter prefix)
                 answer_text = line
                 answers[line_num] = ('', answer_text)
     except Exception as e:
@@ -405,11 +404,9 @@ def process_folder_to_csv(folder_path: Path, processor: ImageProcessor) -> Optio
         logger.warning("No answer-key.md found in %s, skipping", folder_path)
         return None
 
-    # Parse answer key
     answers = parse_answer_key(answer_key_path)
     logger.info("Parsed %d answers from %s", len(answers), answer_key_path)
 
-    # Get question images
     question_images = get_question_images(folder_path)
     if not question_images:
         logger.warning("No question images found in %s", folder_path)
@@ -417,11 +414,9 @@ def process_folder_to_csv(folder_path: Path, processor: ImageProcessor) -> Optio
 
     logger.info("Found %d question images in %s", len(question_images), folder_path)
 
-    # Process question images with OCR
     image_paths = list(question_images.values())
     ocr_results = processor.process_images_parallel(image_paths, [folder_path])
 
-    # Map OCR results to question numbers
     questions = {}
     for q_num, img_path in question_images.items():
         img_name = img_path.name
@@ -447,7 +442,6 @@ def process_folder_to_csv(folder_path: Path, processor: ImageProcessor) -> Optio
 
         questions[q_num] = question_text
 
-    # Export to CSV
     csv_path = export_to_csv(folder_path, questions, answers)
     return csv_path
 
@@ -517,7 +511,6 @@ Examples:
         )
 
         if args.export_csv:
-            # Export mode: process each folder and create CSV files
             csv_files = []
             for folder_path in folder_paths:
                 if not folder_path.exists() or not folder_path.is_dir():
@@ -534,7 +527,6 @@ Examples:
             else:
                 print("No CSV files were created. Make sure folders contain answer-key.md files.")
         else:
-            # Normal OCR mode: process images and display results
             image_files = get_image_files_from_multiple_folders(folder_paths)
 
             if not image_files:
