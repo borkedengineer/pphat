@@ -370,10 +370,8 @@ def export_to_csv(folder_path: Path, questions: Dict[int, str], answers: Dict[in
 
     with open(output_path, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
-        # Write headers
         writer.writerow(['Question Number', 'Question', 'Answer Text'])
 
-        # Get all question numbers and sort them
         all_question_nums = sorted(set(questions.keys()) | set(answers.keys()))
 
         for q_num in all_question_nums:
