@@ -80,7 +80,7 @@ class ImageProcessor:
         Returns:
             Cleaned text
         """
-        # Remove common OCR artifacts from radio buttons and checkboxes
+        # Remove OCR noise
         # Patterns like "CD)", "Cc)", "0)", "O)", "A. Cc)", ". Cc)", etc.
         text = re.sub(r'[CDOo0]+\s*\)', '', text)
         text = re.sub(r'0\s+0\s*:', '', text)
