@@ -89,7 +89,7 @@ class ImageProcessor:
         text = re.sub(r'\.\s*Cc\)', '', text)                                   # Remove ". Cc)"
         text = re.sub(r'c\.\s*Cc\)', '', text)                                  # Remove "c. Cc)" (lowercase)
 
-        # Fix specific OCR errors
+        # Detect option chars or ocr text hallucinations
         text = re.sub(r'Cc\s+([A-Z])', r'C. \1', text)                          # "Cc Damage" -> "C. Damage"
         text = re.sub(r':\s*([A-Z])', r'A. \1', text)                           # ": A full stall" -> "A. A full stall"
 
