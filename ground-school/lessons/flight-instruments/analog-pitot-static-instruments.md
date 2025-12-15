@@ -75,3 +75,27 @@ Formula:
 ```md
 Pressure Altitude = (Standard Pressure − Current Setting) × 1,000 + Elevation
 ```
+
+### High Pressure to Low Pressure (no adjustment)
+
+Your indicated altitude will be higher than your actual altitude above sea level.
+
+> Memory Aid: _"From high to low, look out below."_
+
+### Low Pressure to High Pressure (no adjustment)
+
+Your indicated altitude will be lower than your actual altitude above sea level.
+
+> Memory Aid: _"From low to highm clear the sky."_
+
+## Density Altitude
+
+**It is pressure altitude corrected for nonstandard temperature**. It's the altitude the airplane _feels_ its flying.
+
+**Standard Tempature:** 15°C (or 59°F)
+
+Indicated altitude lower than true altitude when temperatures are warmer than standard.
+
+--or--
+
+Indicated altitude higher than true altitude when temperatures are below standard.
