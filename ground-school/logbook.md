@@ -7,6 +7,7 @@
 | 18/09/24 | Aerodynamics Theory (Part 1) | King Schools (Online) | 0:30 | 0:30          |
 | 20/09/24 | Aerodynamics Theory (Part 2) | King Schools (Online) | 1:30 | 2:00          |
 | 23/09/24 | Aerodynamics By Products     | King Schools (Online) | 0:30 | 2:30          |
+| 28/09/24 | Flight Instruments & Analog  | King Schools (Online) | 0:30 | 3:00          |
 | -------- | ---------------------------- | --------------------- | ---- | ------------- |
 
 # SELF STUDY
