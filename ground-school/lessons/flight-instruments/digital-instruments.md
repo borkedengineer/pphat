@@ -14,3 +14,9 @@ A modern aircraft screen that consolidates essential flight information:
 4. Heading
 5. Vertical Speed
 6. Turn Coordinator
+
+## Horizontal Situation Indicator
+
+![Horizontal Situation Indicator (HSI)](../../diagrams/garmin-hsi.png)
+
+An advanced instrument that combines magnetic heading, course guidance (VOR/ILS/GPS), and glideslope information into single, intuitive display.
