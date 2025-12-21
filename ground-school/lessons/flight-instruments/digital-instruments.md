@@ -20,3 +20,24 @@ A modern aircraft screen that consolidates essential flight information:
 ![Horizontal Situation Indicator (HSI)](../../diagrams/garmin-hsi.png)
 
 An advanced instrument that combines magnetic heading, course guidance (VOR/ILS/GPS), and glideslope information into single, intuitive display.
+
+## Multi-Function Display
+
+![Multi Function Display (HSI)](../../diagrams/mfd.png)
+
+A digital screen that consolidates various flight information like naigation, engine monitoring, weather and terrain into one view. It works with the Fight Management System (FMS) and PFD.
+
+## Pito-Static & Gyroscopic Digital Instruments
+
+The traditional sensors send data to be processed by the Air Data Computer (ADC) and Altitude Heading Reference System (AHRS). These systems are composed of electronic sensors like accelerometes, while heading is measured using a magnetometer.
+
+Any large X's that show up inidicate when the ADC or AHRS are failing.
+
+## Back up instruments
+
+There are four that are required:
+
+1. Airspeed Indicator
+2. Attitude Indicator
+3. Altimeter
+4. Magnetic Compass
