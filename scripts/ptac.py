@@ -147,6 +147,105 @@ class ImageProcessor:
 
         return '\n'.join(cleaned_lines)
 
+    def parse_question_and_options(self, text: str) -> Tuple[str, List[str]]:
+        """
+        Parse OCR text into question and options.
+        
+        Uses the structure of options B and C to find where option A starts.
+        Options in multiple choice questions often have similar patterns.
+        
+        Args:
+            text: Cleaned OCR text with newlines preserved
+            
+        Returns:
+            Tuple of (question_text, list of options)
+        """
+        lines = [line.strip() for line in text.split('\n') if line.strip()]
+
+        if not lines:
+            return '', []
+
+        full_text = ' '.join(lines)
+
+        # Strategy 1: If there's a "?", split there
+        if '?' in full_text:
+            q_end = full_text.rfind('?')
+            question = full_text[:q_end + 1].strip()
+            rest = full_text[q_end + 1:].strip()
+            options = [s.strip().rstrip('.') for s in re.split(r'\.\s+', rest) if s.strip()]
+            if len(options) >= 3:
+                return question, options[-3:]
+            elif options:
+                return question, options
+
+        # Strategy 2: Split by ". " and analyze segments
+        segments = re.split(r'\.\s+', full_text)
+        segments = [s.strip() for s in segments if s.strip()]
+
+        if len(segments) >= 4:
+            # Last 3 are options, rest is question
+            options = [s.rstrip('.') for s in segments[-3:]]
+            question = '. '.join(segments[:-3]) + '.'
+            return question, options
+
+        elif len(segments) == 3:
+            # First segment contains question + option A
+            # Use options B and C to find where option A starts
+            seg_a, seg_b, seg_c = segments
+
+            words_b = seg_b.split()
+            words_c = seg_c.split()
+
+            if words_b and words_c:
+                first_b = words_b[0].lower().rstrip('.,;:')
+                first_c = words_c[0].lower().rstrip('.,;:')
+
+                # If options B and C start with same word (not too common), find it in segment A
+                common_words = {'a', 'an', 'the', 'to', 'in', 'on', 'at', 'of', 'or', 'and', 'is', 'are'}
+                if first_b == first_c and len(first_b) > 1 and first_b not in common_words:
+                    pattern = r'\b(' + re.escape(first_b) + r')\b'
+                    match = re.search(pattern, seg_a, re.IGNORECASE)
+                    if match:
+                        question = seg_a[:match.start()].strip()
+                        first_option = seg_a[match.start():].strip().rstrip('.')
+                        return question, [first_option, seg_b.rstrip('.'), seg_c.rstrip('.')]
+
+                # Check if options B and C have same ending (e.g., "feet MSL", "knots")
+                last_b = words_b[-1].lower().rstrip('.,;:') if words_b else ''
+                last_c = words_c[-1].lower().rstrip('.,;:') if words_c else ''
+
+                if last_b == last_c and len(last_b) > 2:
+                    # Find where this ending pattern appears in seg_a
+                    # Look for: number + ending (e.g., "9,500 feet")
+                    pattern = r'(\d[\d,]*\s+' + re.escape(last_b) + r')\b'
+                    match = re.search(pattern, seg_a, re.IGNORECASE)
+                    if match:
+                        question = seg_a[:match.start()].strip()
+                        first_option = seg_a[match.start():].strip().rstrip('.')
+                        return question, [first_option, seg_b.rstrip('.'), seg_c.rstrip('.')]
+
+            # Fallback: try common stem patterns
+            stem_patterns = [
+                r'^(.*\bindicates)\s+(.+)$',      # "indicates X"
+                r'^(.*\bis)\s+(.+)$',             # "is X" 
+                r'^(.*\bare)\s+(.+)$',            # "are X"
+                r'^(.*\bequipped with)\s+(.+)$',  # "equipped with X"
+                r'^(.*\bcaused by)\s+(.+)$',      # "caused by X"
+            ]
+
+            for pattern in stem_patterns:
+                match = re.match(pattern, seg_a, re.IGNORECASE)
+                if match:
+                    question = match.group(1).strip()
+                    first_option = match.group(2).strip().rstrip('.')
+                    return question, [first_option, seg_b.rstrip('.'), seg_c.rstrip('.')]
+
+            # Final fallback: return all as options with empty question
+            return '', [s.rstrip('.') for s in segments]
+
+        else:
+            return full_text.rstrip('.'), []
+
     def process_image(self, image_path: Path, base_paths: List[Path] = None) -> Tuple[str, str]:
         """
         Process a single image and extract text.
@@ -350,14 +449,15 @@ def get_question_images(folder_path: Path) -> Dict[int, Path]:
     return question_images
 
 
-def export_to_csv(folder_path: Path, questions: Dict[int, str], answers: Dict[int, Tuple[str, str]], 
-                   output_path: Optional[Path] = None) -> Path:
+def export_to_csv(folder_path: Path, questions: Dict[int, Tuple[str, List[str]]],
+                  answers: Dict[int, Tuple[str, str]],
+                  output_path: Optional[Path] = None) -> Path:
     """
     Export questions and answers to a CSV file.
 
     Args:
         folder_path: Path to the folder containing the questions
-        questions: Dictionary mapping question number to question text
+        questions: Dictionary mapping question number to (question_text, options) tuple
         answers: Dictionary mapping question number to (answer_letter, answer_text) tuple
         output_path: Optional path for the CSV file. If None, uses folder_path/questions.csv
 
@@ -369,18 +469,25 @@ def export_to_csv(folder_path: Path, questions: Dict[int, str], answers: Dict[in
 
     with open(output_path, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(['Question Number', 'Question', 'Answer Text'])
+        writer.writerow(['Question', 'Options', 'Answer'])
 
         all_question_nums = sorted(set(questions.keys()) | set(answers.keys()))
 
         for q_num in all_question_nums:
-            question_text = questions.get(q_num, '').replace('\n', ' ').strip()
+            if q_num in questions:
+                question_text, options = questions[q_num]
+                question_text = question_text.replace('\n', ' ').strip()
+                options_str = ' | '.join(options)
+            else:
+                question_text = ''
+                options_str = ''
+
             if q_num in answers:
                 _, answer_text = answers[q_num]
             else:
                 answer_text = ''
-            writer.writerow([q_num, question_text, answer_text])
 
+            writer.writerow([question_text, options_str, answer_text])
     logger.info("Exported CSV to: %s", output_path)
     return output_path
 
@@ -417,27 +524,29 @@ def process_folder_to_csv(folder_path: Path, processor: ImageProcessor) -> Optio
     questions = {}
     for q_num, img_path in question_images.items():
         img_name = img_path.name
-        question_text = ''
+        ocr_text = ''
 
         # Try multiple ways to find the OCR result
         # 1. Try by filename only
         if img_name in ocr_results:
-            question_text = ocr_results[img_name]
+            ocr_text = ocr_results[img_name]
         # 2. Try with folder prefix
         elif f"{folder_path.name}/{img_name}" in ocr_results:
-            question_text = ocr_results[f"{folder_path.name}/{img_name}"]
+            ocr_text = ocr_results[f"{folder_path.name}/{img_name}"]
         # 3. Try by matching any key that ends with the filename
         else:
             for key, text in ocr_results.items():
                 if key.endswith(img_name) or key == str(img_path):
-                    question_text = text
+                    ocr_text = text
                     break
 
-        # If still not found or error, use empty string
-        if question_text.startswith("ERROR:"):
-            question_text = ''
-
-        questions[q_num] = question_text
+        # If still not found or error, use empty tuple
+        if ocr_text.startswith("ERROR:"):
+            questions[q_num] = ('', [])
+        else:
+            # Parse into question and options
+            question_text, options = processor.parse_question_and_options(ocr_text)
+            questions[q_num] = (question_text, options)
 
     csv_path = export_to_csv(folder_path, questions, answers)
     return csv_path
