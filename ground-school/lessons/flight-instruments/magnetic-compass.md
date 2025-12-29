@@ -38,3 +38,30 @@ As you accelerate the compass tilts.
 
 # South
 ```
+
+### Turning Errors
+
+Another effect of magnetic dip are magnetic compass errors when doing turns from north and south headings.
+
+> 1. Compass _lags_ when turning from a northerly heading
+> 2. Compass _leads_ when turning from a southerly heading
+
+There are no turning errors on East or West headings.
+
+```md
+# Compass
+
+# Overshoots
+
+# South
+
+# Undershoots
+
+# North
+```
+
+### Magnetic Deviation Errors
+
+The aircraft's own magnetic fields from metal parts, electrical systems (radios, wiring, engines) distort lines magnetic force causing the magnetic compass to have error.
+
+A pilot can correct for this by using a compass correction card.
