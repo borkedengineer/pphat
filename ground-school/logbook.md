@@ -10,6 +10,7 @@
 | 28/09/24 | Flight Instruments - Analog       | King Schools (Online) | 0:30 | 3:00          |
 | 30/09/24 | Flight Instruments - Pitot Static | King Schools (Online) | 1:00 | 4:00          |
 | 01/10/24 | Digital Flight Instruments        | King Schools (Online) | 0:15 | 4:15          |
+| 02/10/24 | Magnetic Compass                  | King Schools (Online) | 0:30 | 4:45          |
 | -------- | ----------------------------      | --------------------- | ---- | ------------- |
 
 # SELF STUDY
