@@ -167,7 +167,6 @@ class ImageProcessor:
 
         full_text = ' '.join(lines)
 
-        # Strategy 1: If there's a "?", split there
         if '?' in full_text:
             q_end = full_text.rfind('?')
             question = full_text[:q_end + 1].strip()
@@ -178,7 +177,6 @@ class ImageProcessor:
             elif options:
                 return question, options
 
-        # Strategy 2: Split by ". " and analyze segments
         segments = re.split(r'\.\s+', full_text)
         segments = [s.strip() for s in segments if s.strip()]
 
@@ -189,8 +187,6 @@ class ImageProcessor:
             return question, options
 
         elif len(segments) == 3:
-            # First segment contains question + option A
-            # Use options B and C to find where option A starts
             seg_a, seg_b, seg_c = segments
 
             words_b = seg_b.split()
@@ -224,7 +220,6 @@ class ImageProcessor:
                         first_option = seg_a[match.start():].strip().rstrip('.')
                         return question, [first_option, seg_b.rstrip('.'), seg_c.rstrip('.')]
 
-            # Fallback: try common stem patterns
             stem_patterns = [
                 r'^(.*\bindicates)\s+(.+)$',      # "indicates X"
                 r'^(.*\bis)\s+(.+)$',             # "is X" 
