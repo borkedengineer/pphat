@@ -45,6 +45,14 @@ A standardized time using Coordinated Universal Time (UTC) to eliminate confusio
 
 Defines precise locations for navigation, flight planning, and waypoints using a grid system of degrees and minutes on charts like sectional charts.
 
+![Lines of Latitude.](../../diagrams/latitude-longitude.png)
+
 > _Latitude_: Lines that are paralell to Equator (0<sup>o</sup>) measuring North and South.
 
 > _Longitude_: Lines that East or West of the Prime Meridian (0<sup>o</sup>) and cross the equator at right angles.
+
+![Degrees and minutes.](../../diagrams/degree-minutes.png)
+
+Each degree of latitude/longitude is a minute.
+
+1 minute = 1 nautical mile.
