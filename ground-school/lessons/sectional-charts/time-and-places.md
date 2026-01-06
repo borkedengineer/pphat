@@ -56,3 +56,13 @@ Defines precise locations for navigation, flight planning, and waypoints using a
 Each degree of latitude/longitude is a minute.
 
 1 minute = 1 nautical mile.
+
+## Reading latitude & longitude on sectionals
+
+![Guide to reading latitude and longitude in a sectional.](../../diagrams/latitude-longitude-sectional.png)
+
+1. Draw a horizontal line parallel to latitude
+2. Draw a vertical line parallel to longtiude
+3. Find the nearest latitude and longitude lines near the point of interest.
+4. Read latitude off drawn longitude line found in step 3)
+5. Read longtitude off drawn latitude line found in step 3)
