@@ -10,4 +10,12 @@ Blue circles designate controlled airports.
 
 Tick marks around the circle are airports that have fuel services.
 
-A star above a circle indicate an airport that has a rotating beacon
+![Airports symbology on a sectional.](../../diagrams/airport-beacon.png)
+
+A star above a circle indicate an airport that has a rotating beacon.
+
+> W G alternating is a civlian airport.
+
+> G W W G (dual peaked white flashes) is a military airport.
+
+> W Y G is a lighted heliport (DO NOT LAND).
