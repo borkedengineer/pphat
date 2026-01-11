@@ -19,3 +19,5 @@ A star above a circle indicate an airport that has a rotating beacon.
 > G W W G (dual peaked white flashes) is a military airport.
 
 > W Y G is a lighted heliport (DO NOT LAND).
+
+![LAX label on a VFR sectional.](../../diagrams/lax-label-sectional.png)
