@@ -23,3 +23,9 @@ A star above a circle indicate an airport that has a rotating beacon.
 ![LAX label on a VFR sectional.](../../diagrams/lax-label-sectional.png)
 
 > Control Tower 120.95 (South/ primary?) 133.9 (North) 128ft (elevation) MSL of airport, L lighting at airport, Automatic Terminal Information Service is on frequency channel 133.8, 129-> 12,900ft longest available runway, 122.95 UNICOM frequency
+
+![Sectional legend for obstructions.](../../diagrams/sectional-symbols-obstructions.png)
+
+![Sectional countours.](../../diagrams/sectional-contours.png)
+
+> In congested areas you must fly 1,000ft above within a 2,000ft radius
