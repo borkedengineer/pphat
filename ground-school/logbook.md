@@ -12,6 +12,7 @@
 | 01/10/24 | Digital Flight Instruments        | King Schools (Online) | 0:15 | 4:15          |
 | 02/10/24 | Magnetic Compass                  | King Schools (Online) | 0:30 | 4:45          |
 | 03/10/24 | Aviation Time                     | King Schools (Online) | 0:45 | 5:30          |
+| 04/10/24 | Sectionals                        | King Schools (Online) | 0:45 | 6:15          |
 | -------- | ----------------------------      | --------------------- | ---- | ------------- |
 
 # SELF STUDY
