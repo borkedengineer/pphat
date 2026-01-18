@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Image to Text Converter (PTAC)
-Processes images in parallel to extract text using OCR.
+FAA Test Parser
+
+Extracts questions and answers from FAA written test images (PPL, etc.)
+using OCR. Processes question images in parallel and exports to CSV format
+when paired with an answer key file.
 """
 import argparse
 import csv
@@ -556,12 +559,12 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python ptac.py --source /path/to/images
-  python ptac.py --source ./screenshots --workers 4
-  python ptac.py --source ./test-questions --no-preprocessing
-  python ptac.py --source ./folder1 ./folder2 ./folder3
-  python ptac.py -s practice-tests/2025-10-11 practice-tests/2025-11-02
-  python ptac.py --export-csv --source practice-tests/2025-10-11 practice-tests/2025-11-11
+  python faa_test_parser.py --source /path/to/images
+  python faa_test_parser.py --source ./screenshots --workers 4
+  python faa_test_parser.py --source ./test-questions --no-preprocessing
+  python faa_test_parser.py --source ./folder1 ./folder2 ./folder3
+  python faa_test_parser.py -s practice-tests/2025-10-11 practice-tests/2025-11-02
+  python faa_test_parser.py --export-csv --source practice-tests/2025-10-11 practice-tests/2025-11-11
         """
     )
 
