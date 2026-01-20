@@ -90,7 +90,7 @@ class ImageProcessor:
         text = re.sub(r'0\s+0\s*', '', text)
 
         # Remove "Cc)" and "Cc" artifacts in various contexts
-        text = re.sub(r'Cc\s*\)', '', text)                                      # Remove "Cc)" anywhere
+        text = re.sub(r'Cc\s*\)', '', text)                                     # Remove "Cc)" anywhere
         text = re.sub(r'[A-Z]\.\s*Cc\)', '', text)                              # Remove "A. Cc)", "B. Cc)", etc.
         text = re.sub(r'\.\s*Cc\)', '', text)                                   # Remove ". Cc)"
         text = re.sub(r'c\.\s*Cc\)', '', text)                                  # Remove "c. Cc)" (lowercase)
@@ -110,8 +110,8 @@ class ImageProcessor:
         text = re.sub(r'^;\s*$', '', text, flags=re.MULTILINE)                  # Remove standalone ";"
         text = re.sub(r'\n:\s*\n', '\n', text)                                  # Remove ":" on its own line
         text = re.sub(r'\n;\s*\n', '\n', text)                                  # Remove ";" on its own line
-        text = re.sub(r'\s+:\s+([a-zA-Z0-9])', r' \1', text)                   # " : lift" -> " lift" (remove colon artifact)
-        text = re.sub(r'\.\s*:\s+([a-zA-Z0-9])', r'. \1', text)                # ". : lift" -> ". lift"
+        text = re.sub(r'\s+:\s+([a-zA-Z0-9])', r' \1', text)                    # " : lift" -> " lift" (remove colon artifact)
+        text = re.sub(r'\.\s*:\s+([a-zA-Z0-9])', r'. \1', text)                 # ". : lift" -> ". lift"
         text = re.sub(r'^\.\s+', '', text, flags=re.MULTILINE)                  # Remove ". " at start of line
         text = re.sub(r'\n\.\s+', '\n', text)                                   # Remove ". " after newline
         text = re.sub(r"^'\s+", '', text, flags=re.MULTILINE)                   # Remove "' " at start of line
