@@ -28,6 +28,17 @@ Process all images in a folder and display extracted text:
 python faa_test_parser.py --source /path/to/test-images
 ```
 
+### Command Line Options
+
+| Option               | Short | Description                                                              |
+| -------------------- | ----- | ------------------------------------------------------------------------ |
+| `--source`           | `-s`  | Path(s) to folder(s) containing images (required, can specify multiple)  |
+| `--export-csv`       |       | Export questions and answers to CSV (requires `answer-key.md` in folder) |
+| `--workers`          | `-w`  | Number of worker threads (default: CPU count)                            |
+| `--no-preprocessing` |       | Skip image enhancement before OCR                                        |
+| `--verbose`          | `-v`  | Enable verbose logging                                                   |
+| `--help`             | `-h`  | Show help message                                                        |
+
 ### Export to CSV
 
 If your folder contains question images (`q1.png`, `q2.png`, etc.) and an `answer-key.md` file, export everything to a CSV:
@@ -61,17 +72,6 @@ Enable verbose logging:
 ```bash
 python faa_test_parser.py --source ./test-images --verbose
 ```
-
-### Command Line Options
-
-| Option | Short | Description |
-|--------|-------|-------------|
-| `--source` | `-s` | Path(s) to folder(s) containing images (required, can specify multiple) |
-| `--export-csv` | | Export questions and answers to CSV (requires `answer-key.md` in folder) |
-| `--workers` | `-w` | Number of worker threads (default: CPU count) |
-| `--no-preprocessing` | | Skip image enhancement before OCR |
-| `--verbose` | `-v` | Enable verbose logging |
-| `--help` | `-h` | Show help message |
 
 ## Expected Folder Structure
 
