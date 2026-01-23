@@ -26,3 +26,17 @@ Class G is uncontrolled airspace.
 | D              | Dialogue   | Control towers begin; must talk before entering |
 | E              | Elsewhere  | Airspace between airways                        |
 | G              | Go for it  |                                                 |
+
+## Using Airspaces
+
+### Class G
+
+### Class E
+
+![Air strip that depicts Class E airspace with magenta dotted lines.](../../diagrams/class-e-ktnt.png)
+
+KTNT has a Class E airspace from Surface depicted by the magenta dotted line.
+
+![MOA that depicts Class E airspace with fuzzy blue area.](../../diagrams/class-e-smitty-moa.png)
+
+Within the Cato MOA/Smitty MOA, there is a section of airspace with fuzzy blue box. The fuzzy side of blue is Class E airspace with a floor of 1,200 ft AGL.
