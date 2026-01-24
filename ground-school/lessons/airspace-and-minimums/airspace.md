@@ -29,9 +29,17 @@ Class G is uncontrolled airspace.
 
 ## Using Airspaces
 
+Some airspaces are busy and need IFR services to the ground, so class E airspace can go to ground.
+
 ### Class G
 
+Class G airspace isn't marked directly in sectionals but is identified by the absense of the other airspaces and height of overlying Class E airspace.
+
+![Air field that depicts Class G airspace with magenta fuzz (below 700 ft AGL) and Class E airspace above.](../../diagrams/class-e-ktnt.png)
+
 ### Class E
+
+Class E airspace is shown on a sectional chart with magenta shading (700 ft AGL floor), blue vignettes (1200 ft AGL floor), blue shaded lines (Victor Airways) and dashed magenta lines (surface floor).
 
 ![Air strip that depicts Class E airspace with magenta dotted lines.](../../diagrams/class-e-ktnt.png)
 
