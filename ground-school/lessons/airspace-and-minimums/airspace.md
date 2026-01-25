@@ -53,7 +53,17 @@ Within the Cato MOA/Smitty MOA, there is a section of airspace with fuzzy blue b
 
 Class D airspace is shown on a sectional chart as a blue dashed circle (segmented line) around an airport with an operational tower.
 
+![Class D airport on a sectional. Van Nuys, LA](../../diagrams/class-d-kvny.png)
+
 It starts from surface and usually goes to 2,500 ft above the airport. A number in a dashed square will show the ceiling of the Delta airspace. The core area is 4.4 nautical miles or (5.5 statue miles). Lateral dimentions are based on instrument procedures established for the airspace.
+
+![San Luis Obispo airport has a higher Class D shelf.](../../diagrams/class-d-ksbp.png)
+
+San Luis Obispo airport has a higher ceiling for its Class D airspace at 2,700 ft MSL.
+
+![Salnias airport has a special ceiling for the Class D airspace.](../../diagrams/class-d-ksns.png)
+
+Salnias airport has a Class D airspace where its celing is not inclusive at 2,500 ft MSL as shown by the dashed square box.
 
 #### Entering the airspace
 
@@ -62,5 +72,3 @@ Prior to flying into this airspace you must have two-way radio communication wit
 #### IFR Operations
 
 Separation services from other IFR aircraft, along with sequencing, traffic advisories and safety alerts.
-
-![Class D airport on a sectional. Van Nuys, LA](../../diagrams/class-d-kvny.png)
