@@ -48,3 +48,19 @@ KTNT has a Class E airspace from Surface depicted by the magenta dotted line.
 ![MOA that depicts Class E airspace with fuzzy blue area.](../../diagrams/class-e-smitty-moa.png)
 
 Within the Cato MOA/Smitty MOA, there is a section of airspace with fuzzy blue box. The fuzzy side of blue is Class E airspace with a floor of 1,200 ft AGL.
+
+### Class D
+
+Class D airspace is shown on a sectional chart as a blue dashed circle (segmented line) around an airport with an operational tower.
+
+It starts from surface and usually goes to 2,500 ft above the airport. A number in a dashed square will show the ceiling of the Delta airspace. The core area is 4.4 nautical miles or (5.5 statue miles). Lateral dimentions are based on instrument procedures established for the airspace.
+
+#### Entering the airspace
+
+Prior to flying into this airspace you must have two-way radio communication with the tower (during operation hours).
+
+#### IFR Operations
+
+Separation services from other IFR aircraft, along with sequencing, traffic advisories and safety alerts.
+
+![Class D airport on a sectional. Van Nuys, LA](../../diagrams/class-d-kvny.png)
