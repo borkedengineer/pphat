@@ -13,6 +13,7 @@
 | 02/10/24 | Magnetic Compass                  | King Schools (Online) | 0:30 | 4:45          |
 | 03/10/24 | Aviation Time                     | King Schools (Online) | 0:45 | 5:30          |
 | 04/10/24 | Sectionals                        | King Schools (Online) | 0:45 | 6:15          |
+| 07/10/24 | Airspace                          | King Schools (Online) | 0:45 | 7:00          |
 | -------- | ----------------------------      | --------------------- | ---- | ------------- |
 
 # SELF STUDY
