@@ -65,9 +65,27 @@ San Luis Obispo airport has a higher ceiling for its Class D airspace at 2,700 f
 
 Salnias airport has a Class D airspace where its celing is not inclusive at 2,500 ft MSL as shown by the dashed square box.
 
-#### Entering the airspace
+#### Minimum Equipment
+
+> A VHF transmitter and receiver (comms radio) is required for two-way communication.
 
 Prior to flying into this airspace you must have two-way radio communication with the tower (during operation hours).
+
+###### Can enter airspace
+
+> _Tower: 7153 Papa, Stand By_
+
+You can enter the airspace as two-way communication has been established.
+
+###### CANNOT enter airspace
+
+> _Tower: Aircraft calling stand by_
+
+Your tail number must be read back by ATC for two-communication.
+
+> _Tower: Commanche 7153 Papa, stand by and stay clear_
+
+If ATC is too busy and other factors and there's explicit instructions, stay out of the airspace.
 
 #### IFR Operations
 
