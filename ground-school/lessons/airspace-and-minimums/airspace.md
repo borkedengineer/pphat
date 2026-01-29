@@ -85,8 +85,16 @@ Your tail number must be read back by ATC for two-communication.
 
 > _Tower: Commanche 7153 Papa, stand by and stay clear_
 
+#### Landings & Takeoff
+
+A clearance is required to take off or land at a primary airport in Class D airspace.
+
+If landing at a secondary airport in Class D you must radio the primary **before** entering. As for take off from a secondary, radio primary as soon as possible when able in air.
+
 If ATC is too busy and other factors and there's explicit instructions, stay out of the airspace.
 
 #### IFR Operations
 
 Separation services from other IFR aircraft, along with sequencing, traffic advisories and safety alerts.
+
+#### Tower Services
