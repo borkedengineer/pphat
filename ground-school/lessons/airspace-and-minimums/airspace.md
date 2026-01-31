@@ -51,7 +51,11 @@ Within the Cato MOA/Smitty MOA, there is a section of airspace with fuzzy blue b
 
 ### Class D
 
-Class D airspace is shown on a sectional chart as a blue dashed circle (segmented line) around an airport with an operational tower.
+Class D airspace is shown on a sectional chart as a blue dashed circle (segmented line) around an airport.
+
+Delta airspaces are only operational during control tower hours.
+
+> Tower closed: Becomes **Class E** _or_ **Class G if no official reporting weather or comms**.
 
 ![Class D airport on a sectional. Van Nuys, LA](../../diagrams/class-d-kvny.png)
 
@@ -98,3 +102,9 @@ If ATC is too busy and other factors and there's explicit instructions, stay out
 Separation services from other IFR aircraft, along with sequencing, traffic advisories and safety alerts.
 
 #### Tower Services
+
+ATC towers provide the follow services:
+
+1. Keeping airplanes separated on the runway
+2. Facilitates safe, orderly and expeditious flow
+3. Provies advirsories and separation services
