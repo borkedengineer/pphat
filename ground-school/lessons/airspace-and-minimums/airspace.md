@@ -29,8 +29,6 @@ Class G is uncontrolled airspace.
 
 ## Using Airspaces
 
-Some airspaces are busy and need IFR services to the ground, so class E airspace can go to ground.
-
 ### Class G
 
 Class G airspace isn't marked directly in sectionals but is identified by the absense of the other airspaces and height of overlying Class E airspace.
@@ -40,6 +38,8 @@ Class G airspace isn't marked directly in sectionals but is identified by the ab
 ### Class E
 
 Class E airspace is shown on a sectional chart with magenta shading (700 ft AGL floor), blue vignettes (1200 ft AGL floor), blue shaded lines (Victor Airways) and dashed magenta lines (surface floor).
+
+Some airspaces are busy and need IFR services to the ground, so class E airspace can go to ground.
 
 ![Air strip that depicts Class E airspace with magenta dotted lines.](../../diagrams/class-e-ktnt.png)
 
@@ -51,7 +51,7 @@ Within the Cato MOA/Smitty MOA, there is a section of airspace with fuzzy blue b
 
 ### Class D
 
-Class D airspace is shown on a sectional chart as a blue dashed circle (segmented line) around an airport.
+Class D airspace is shown on a sectional chart as a blue dashed (segmented) line around an airport.
 
 Delta airspaces are only operational during control tower hours.
 
@@ -77,17 +77,17 @@ Prior to flying into this airspace you must have two-way radio communication wit
 
 ###### Can enter airspace
 
-> _Tower: 7153 Papa, Stand By_
+> _Tower: 7153 Papa, Stand By_.
 
 You can enter the airspace as two-way communication has been established.
 
 ###### CANNOT enter airspace
 
-> _Tower: Aircraft calling stand by_
+> _Tower: Aircraft calling stand by_.
 
 Your tail number must be read back by ATC for two-communication.
 
-> _Tower: Commanche 7153 Papa, stand by and stay clear_
+> _Tower: Commanche 7153 Papa, stand by and stay clear_.
 
 #### Landings & Takeoff
 
@@ -108,3 +108,17 @@ ATC towers provide the follow services:
 1. Keeping airplanes separated on the runway
 2. Facilitates safe, orderly and expeditious flow
 3. Provies advirsories and separation services
+
+### Class C
+
+Class C airspace is shown on a sectional chart as a solid magenta line around an airport.
+
+#### Shelf dimensions
+
+1. **Inner Circle** has a radius of 5 nautical miles
+2. **Outer Circle/Shelf Area** normally has a vertical height from 1,200' to 4,000' ft
+3. **Procedural Outer Area** is 10 nautical miles outside the inner circle
+
+#### Tower Services
+
+Radar service is provided.
