@@ -119,6 +119,28 @@ Class C airspace is shown on a sectional chart as a solid magenta line around an
 2. **Outer Circle/Shelf Area** normally has a vertical height from 1,200' to 4,000' ft
 3. **Procedural Outer Area** is 10 nautical miles outside the inner circle
 
+#### Minimum Equipment
+
+In addition to Class D requirements, to enter Charlie airspace you need:
+
+> Two way radio and a Mode C transponder with altitude encoding
+
+This is for both inside and above up to 10,000' ft MSL.
+
+![4096 transponder](../../diagrams/4096-transponder.png)
+
+4096 transponder codes are where 4 digits where each number can go from 0 to 7.
+
+_ADS-B OUT may also be a requirement with recent FAA regulation changes_.
+
+#### Landings & Takeoff
+
+To enter Charlie airspace you must establish two-way communication. Two-way communication is established when the controller reads back tail number.
+
+1. Call approach control to get radar service.
+
+To take off from a secondary airport, establish two-way communication on the ground or as soon as possible after takeoff.
+
 #### Tower Services
 
 Radar service is provided.
