@@ -1,6 +1,6 @@
 # Airspace
 
-The atmosphere above a country's territory and territorial waters divided into zones by authorities for managing air traffic, safety and military operations with international coordination by ICAO to ensure orderly flight.
+The atmosphere above a country's territory and territorial waters are divided into zones by authorities for managing air traffic, safety and military operations with international coordination by ICAO to ensure orderly flight.
 
 ![International Airspace System](../../diagrams/internation-airspace-system.png)
 
@@ -8,7 +8,7 @@ The atmosphere above a country's territory and territorial waters divided into z
 
 ### Controlled
 
-Airspace where air traffic controllers (ATC) actively manage and provide services (i.e. separation) to aircraft.
+Airspace where air traffic controllers (ATC) actively manage and provide services (ex. separation) to aircraft.
 
 Classes A, B, C, D and E are controlled airspaces.
 
