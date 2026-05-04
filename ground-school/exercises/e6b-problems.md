@@ -77,3 +77,27 @@ These are problems that require setting up ratio.
 ```
 
 </details>
+
+## How Fast / How Far?
+
+### Q1: 23 miles, 10 minutes. How fast?
+
+<details>
+  <summary>Answer</summary>
+
+```
+138mph
+```
+
+</details>
+
+### Q2: 138mph, 13 minutes. How far?
+
+<details>
+  <summary>Answer</summary>
+
+```
+30 miles.
+```
+
+</details>
