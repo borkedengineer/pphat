@@ -101,3 +101,49 @@ These are problems that require setting up ratio.
 ```
 
 </details>
+
+## Calculating Gallons
+
+### Q1: 10 gallons/hour. 2 hours. How many gallons?
+
+<details>
+  <summary>Answer</summary>
+
+```
+20 gallons.
+```
+
+</details>
+
+### Q2: 10 gallons/hour. 2.5 hours. How many gallons?
+
+<details>
+  <summary>Answer</summary>
+
+```
+25 gallons.
+```
+
+</details>
+
+### Q3: 10 gallons/hour. Use 7 gallons. How long?
+
+<details>
+  <summary>Answer</summary>
+
+```
+42 minutes.
+```
+
+</details>
+
+### Q5: 15 gallons used. In 45 minutes. Usage rate per hour?
+
+<details>
+  <summary>Answer</summary>
+
+```
+20 gallons/hour.
+```
+
+</details>
