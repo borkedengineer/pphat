@@ -147,3 +147,22 @@ These are problems that require setting up ratio.
 ```
 
 </details>
+
+## Time, Speed & Distance
+
+### Q1
+
+Refer to [Figure 20](supplements/figure-20.jpg).
+
+En route to First Flight Airport (area 5). The route crosses over Hampton Roads Airpot (area 2) at 1456 and then over Chesapeake Regional at 1501.
+
+When will the flight arrive at First Flight?
+
+<details>
+  <summary>Answer</summary>
+
+```
+1529.
+```
+
+</details>
