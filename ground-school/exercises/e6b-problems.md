@@ -166,3 +166,22 @@ When will the flight arrive at First Flight?
 ```
 
 </details>
+
+## Estimated Time of Arrival
+
+### Q1
+
+Refer to [Figure 23](supplements/figure-23.jpg).
+
+Cruising through Victor 185, the flight crosses the 248 o radial of Allendale VOR at 0953 and then crosses the 215 o radial of Allendale VOR at 1000.
+
+What is the estimated time of arrival at Savannah VORTAC?
+
+<details>
+  <summary>Answer</summary>
+
+```
+1028.
+```
+
+</details>
